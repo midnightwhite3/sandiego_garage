@@ -1,0 +1,28 @@
+{% extends 'san_diego/base.html' %}
+
+{% block title %}Client details{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <div class='mt-4 card'>
+            <div class='card-header'>
+                <h5 class='card-title'>Client Details #{{ client.uuid }}</h5>
+            </div>
+            <div class='card-body'>
+                <dl class='row'>
+                    <dt class="col-sm-3">Client</dt>
+                    <dd class="col-sm-9">{{ client.client_name }}</dd>
+                    <dt class="col-sm-3">Phone number</dt>
+                    <dd class="col-sm-9">{{ client.phone_number }}</dd>
+                    <dt class="col-sm-3">Cars</dt>
+                    {% for car in cars %}
+                    <dd class="col-sm-9"><a href="{% url 'car_detail' car.uuid %}">{{ car.car_make }} {{ car.car_model }}</a></dd>
+                    <dt class="col-sm-3"></dt>
+                    {% empty %}
+                    <dd class="col-sm-9">No cars related to this client</dd>
+                    {% endfor %}
+                </dl>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'san_diego/base.html' %}
+
+{% block title %}Client delete{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="card-title">Delete Client</h5>
+            </div>
+            <div class="card-body">
+                <form method="post" action=''>
+                    {% csrf_token %}
+                    <div class="alert alert-warning" role="alert">
+                        Are you sure you want to delete <strong>{{ client }}</strong> and all cars related to this client ?
+                    </div>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

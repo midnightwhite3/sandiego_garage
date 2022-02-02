@@ -1,0 +1,23 @@
+{% extends 'san_diego/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Edit profile{% endblock %}
+
+{% block content %}
+<link href="{% static 'file_form.css' %}" rel="stylesheet">
+    <div class='container'>
+        <h1 class='mt-4'>Edit profile</h1>
+        <hr class='mt-0'>
+        <form action='.' method='POST' enctype='multipart/form-data'>
+            {{ user_form|crispy }}
+            {{ profile_form|crispy }}
+            {% csrf_token %}
+            <hr class='mt-4'>
+            <div class='row'>
+                <button type='submit' class='btn btn-success'>Save changes</button>
+                <a href="{% url 'password_change' %}" role='button' class='text-info ml-4 mt-2'>Change password</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

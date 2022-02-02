@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'side.css' %}" rel="stylesheet">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i><img src="{% static 'images/logo.png' %}" width='25' height='25' class='icon'></i>
+        <div class="logo_name">GarageApp</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Search...">
+         <span class="tooltip">Search</span>
+      </li>
+      <li>
+        <a href="{% url 'car_library' %}">
+          <i class='fas fa-car'></i>
+          <span class="links_name">Car library</span>
+        </a>
+         <span class="tooltip">Car library</span>
+      </li>
+      <li>
+        <a href="{% url 'client_library' %}">
+         <i class='far fa-address-book' ></i>
+         <span class="links_name">Clients</span>
+       </a>
+       <span class="tooltip">Clients</span>
+     </li>
+     <!-- <li>
+       <a href="#">
+         <i class='bx bx-chat' ></i>
+         <span class="links_name">Messages</span>
+       </a>
+       <span class="tooltip">Messages</span>
+     </li> -->
+     <li>
+       <a href="#">
+         <i class='bx bx-pie-chart-alt-2' ></i>
+         <span class="links_name">Analytics</span>
+       </a>
+       <span class="tooltip">Analytics</span>
+     </li>
+     <li>
+       <a href="https://deler.pl">
+         <i class='bx bx-wrench' ></i>
+         <span class="links_name">Deler</span>
+       </a>
+       <span class="tooltip">Deler</span>
+     </li>
+     <!-- <li>
+       <a href="#">
+         <i class='bx bx-cart-alt' ></i>
+         <span class="links_name">Order</span>
+       </a>
+       <span class="tooltip">Order</span>
+     </li> -->
+     <li>
+         <a href="https://pl.vindecoder.pl">
+           <i class='bx bx-code' ></i>
+           <span class="links_name">Vin Decoder</span>
+         </a>
+         <span class="tooltip">VIN</span>
+     </li>
+     <li>
+       <a href="{% url 'edit_profile' %}">
+         <i class='bx bx-cog' ></i>
+         <span class="links_name">Profile</span>
+       </a>
+       <span class="tooltip">Profile</span>
+     </li>
+     <li class="profile">
+         <div class="profile-details">
+           <!--<img src="profile.jpg" alt="profileImg">-->
+           <div class="name_job">
+             <div class="name">.midnightwhite3</div>
+             <div class="job">Programmer</div>
+           </div>
+         </div>
+         <i class='bx bx-log-out' id="log_out" ></i>
+     </li>
+    </ul>
+  </div>
+  <script>
+  let sidebar = document.querySelector(".sidebar");
+  let closeBtn = document.querySelector("#btn");
+  let searchBtn = document.querySelector(".bx-search");
+
+  closeBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    menuBtnChange();//calling the function(optional)
+  });
+
+  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+    sidebar.classList.toggle("open");
+    menuBtnChange(); //calling the function(optional)
+  });
+
+  // following are the code to change sidebar button(optional)
+  function menuBtnChange() {
+   if(sidebar.classList.contains("open")){
+     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+   }else {
+     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+   }
+  }
+  </script>
+</body>
+</html>

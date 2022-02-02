@@ -1,0 +1,86 @@
+{% extends 'san_diego/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add service{% endblock %}
+
+{%block content %}
+<style>
+    .hidden {
+        display: none
+    }
+</style>
+<div class='container'>
+    <h1 class='mt-4'>{{ car.client }} | {{ car.car_make }} {{ car.car_model }}</h1>
+    <form method='POST' action='' enctype='multipart/form-data' id='carForm' data-carmodels-url="{% url 'ajax_load_car_models' %}">
+        <hr class='mb-4'>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.source.errors }}
+        {{ form.source }}
+        {{ form.errors|as_crispy_errors }}
+        <div class='form-row'>
+            <div class='form-group col-md-8 mb-3'>
+                {{ form.service_name|as_crispy_field }}
+            </div>
+            <div class='form-group col-md-4 mb-3'>
+                {{ form.service_price|as_crispy_field }}
+            </div>
+        </div>
+        {% if formset %}
+        {{formset.management_form}}
+        {{formset.non_form_errors}}
+        <div id='parts'>
+            {%for form in formset%}
+                <div class='parts-form'>
+                    <div class='row ml-1'>
+                    {% for field in form %}
+                        {{field.errors|as_crispy_errors}}
+                        <div class='mb-2 mr-2'>{{field}}</div>
+                    {% endfor %}
+                    </div>
+                </div>
+            {%endfor%}
+            </div>
+        {% endif %}
+        <div id='empty_form' class='hidden'>
+            <div class='row ml-1'>
+            {% for field in formset.empty_form %}
+                    {{ field.errors|as_crispy_errors }}
+                    <div class='mb-2 mr-2'>{{ field }}</div>
+            {% endfor %}
+            </div>
+        </div>
+        <hr/>
+        <div class='row'>
+            <button type='submit' class='btn btn-success mt-2 ml-3'>Save</button>
+            <buttton id='add_part' type='button' class='mt-2 btn btn-link text-info ml-auto'><i class="fas fa-plus"></i> Add part</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+    // <!-- JS for adding a formset via button -->
+    const addMoreBtn = document.getElementById('add_part')
+    const totalNewForms = document.getElementById('id_carparts_set-TOTAL_FORMS')
+
+    addMoreBtn.addEventListener('click', add_new_formset)
+    function add_new_formset(event) {
+        if (event) {
+            event.preventDefault()
+        }
+        const currentServiceForms = document.getElementsByClassName('parts-form')
+        const currentFormCount = currentServiceForms.length //+1
+        const formCopyTarget = document.getElementById('parts')
+        const copyEmptyFormEl = document.getElementById('empty_form').cloneNode(true)
+        copyEmptyFormEl.setAttribute('class', 'parts-form')
+        copyEmptyFormEl.setAttribute('id', `form-${currentFormCount}`)
+        const regex = new RegExp('__prefix__', 'g')
+        copyEmptyFormEl.innerHTML = copyEmptyFormEl.innerHTML.replace(regex, currentFormCount)
+        totalNewForms.setAttribute('value', currentFormCount + 1)
+
+        formCopyTarget.append(copyEmptyFormEl)
+    }
+</script>
+{% endblock content %}

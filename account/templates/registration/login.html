@@ -1,0 +1,53 @@
+{% extends 'san_diego/base.html'%}
+{% load static %}
+
+
+{% block title %}Log in{% endblock %}
+
+{% block content %}   
+<link href="{% static 'loginn.css' %}" rel="stylesheet">
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first mt-2">
+      <img src="{% static 'images/sandiego.png' %}" id="icon" alt="User Icon" height='200' width='200' />
+    </div>
+    
+    {% if form.errors %}
+      <div class="alert alert-danger mx-4 mt-2" role="alert">
+        Username or password are incorrect.
+        Try again.
+      </div>
+    {% endif %}
+
+    <!-- Login Form -->
+    <div class="login-form">
+      <form action="{% url 'login' %}" method='post'>
+        {% csrf_token %}
+        <div class="fadeIn second">
+          <div class='form-group mt-2'>
+            <input type='text' class='form-control' name='username' placeholder='Username' />
+          </div>
+        </div>
+            {% comment %} <input type="text" id="login" class="fadeIn second" name="login" placeholder="Username"> {% endcomment %}
+        <div class="fadeIn third">
+          <div class='form-group'>
+            <input type='password' class='form-control' name='password' placeholder='Password' />
+          </div>
+        </div>
+            {% comment %} <input type="password" id="password" class="fadeIn third" name="login" placeholder="Password"> {% endcomment %}
+        <input type='hidden' name='next' value="{{ next }}" />
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+    </div>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="{% url 'register' %}">Register</a>
+      <p><a class="underlineHover" href="{% url 'password_reset' %}">Forgot your password?</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}

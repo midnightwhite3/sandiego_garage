@@ -1,0 +1,91 @@
+{% extends 'san_diego/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Edit car{% endblock %}
+
+{% block content %}
+<style>
+    .hidden {
+        display: none
+    }
+</style>
+<div class='container'>
+    <h1 class='mt-4'>Edit car</h1>
+    <form method='POST' action='' enctype='multipart/form-data' id='carForm' data-carmodels-url="{% url 'ajax_load_car_models' %}">
+        <hr class='mt-0 mb-4'>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.source.errors }}
+        {{ form.source }}
+        {{ form.client|as_crispy_field }}
+        <div class='form-row'>
+            <div class='form-group col-md-6 mb-0'>
+                {{ form.car_make|as_crispy_field }}
+            </div>
+            <div class='form-group col-md-6 mb-0'>
+                {{ form.car_model|as_crispy_field }}
+            </div>
+        </div>
+        <div class='form-row'>
+            <div class='col-4'>
+                {{ form.errors|as_crispy_errors }}
+                {{ form.year|as_crispy_field }}
+            </div>
+            <div class='col-4'>
+                {{ form.fuel_type|as_crispy_field }}
+            </div>
+            <div class='col-4'>
+                {{ form.engine|as_crispy_field }}
+            </div>
+        </div>
+        {{ form.vin|as_crispy_field }}
+        {{ form.extra_info|as_crispy_field }}
+        <hr><button type='submit' class='btn btn-success mt-2 mb-2'>Save</button></hr>
+    </form> 
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+    // <!-- JS for adding a formset via button -->
+    const addMoreBtn = document.getElementById('add_service')
+    const totalNewForms = document.getElementById('id_service_set-TOTAL_FORMS')
+
+    addMoreBtn.addEventListener('click', add_new_formset)
+    function add_new_formset(event) {
+        if (event) {
+            event.preventDefault()
+        }
+        const currentServiceForms = document.getElementsByClassName('service-form')
+        const currentFormCount = currentServiceForms.length //+1
+        const formCopyTarget = document.getElementById('services')
+        const copyEmptyFormEl = document.getElementById('empty_form').cloneNode(true)
+        copyEmptyFormEl.setAttribute('class', 'service-form')
+        copyEmptyFormEl.setAttribute('id', `form-${currentFormCount}`)
+        const regex = new RegExp('__prefix__', 'g')
+        copyEmptyFormEl.innerHTML = copyEmptyFormEl.innerHTML.replace(regex, currentFormCount)
+        totalNewForms.setAttribute('value', currentFormCount + 1)
+
+        formCopyTarget.append(copyEmptyFormEl)
+    }
+
+    // <!-- Change car models depending on car make selected -->
+    $("#id_car_make").change(function () {
+        var url = $("#carForm").attr("data-carmodels-url");  
+        var carMakeId = $(this).val(); 
+        console.log(url)
+        console.log(carMakeId)
+
+        $.ajax({ 
+            url: url,
+            data: {
+                'car_make': carMakeId
+            },
+            success: function (data) {
+                console.log(data)
+                $("#id_car_model").html(data);
+            }
+        });
+
+    });
+</script>
+{% endblock %}

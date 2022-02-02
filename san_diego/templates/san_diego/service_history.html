@@ -1,0 +1,81 @@
+{% extends 'san_diego/base.html' %}
+
+{% block title %}Service history{% endblock %}
+
+{% block content %}
+  <div class='container'>
+      <h2 class='mt-4 mb-2 text-center'>{{ car }}</h2>
+    <hr/>
+    <!--  Pginator start  -->
+    <div class='row justify-content-end'>
+      <div class='col'>
+      {% if is_paginated %}
+          {% include 'san_diego/pagination.html' %}
+      {% endif %}
+      </div>
+      <a href="{% url 'service_add' uuid=car.uuid %}" role='button' class='text-info mt-2 mr-4 mb-2'><i class="fas fa-plus"></i>Add service</a>
+    </div>
+      <!--  Paginator end -->
+    {% comment %} <div class="accordion" id="accordionExample"> {% endcomment %}
+      {% for s in service %}
+        <div class="accordion" id="accordionExample">
+          <div class="card text-center">
+            <div class="card-header" id="heading{{s.id}}">
+              <button class="btn btn-link text-info" type="button" data-toggle="collapse" data-target="#collapse{{s.id}}" aria-expanded="false" aria-controls="collapse{{s.id}}">
+                {{s}}
+              </button>
+              <div class='float-right'>
+                <cite>
+                  {{s.date_added|date:"d M Y"}}
+                </cite>
+              </div>
+            </div>
+            <div id="collapse{{s.id}}" class="collapse" aria-labelledby="heading{{s.id}}" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class='row'>
+                  <div class="col-sm-6">
+                    <h6>{{ s }}</h6>
+                    <hr/>
+                  </div>
+                  <div class="col-sm-6 border-left">
+                    <h6>{{ s.service_price }}</h6>
+                    <hr>
+                  </div>
+                </div>
+                {% for part in s.carparts_set.all %}
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <p>{{ part.car_part }}</p>
+                    </div>
+                    <div class="col-sm-6 border-left">
+                      <p>{{ part.part_price }}</p>
+                    </div>
+                  </div>
+                {% endfor %}
+                {% if s.total != None %}
+                <div class='row'>
+                  <div class="col-sm-4">
+                  </div>
+                  <div class="col-sm-8">
+                    <h6 class='ml-4 pl-4'>&ensp; Total price: &ensp; &ensp; {{ s.total }}</h6>
+                  </div>
+                </div>
+                {% endif %}
+                <!--  Button for modal  -->
+                <div class='row justify-content-end'>
+                  <a href="{{s.id}}/edit" role='button' class='text-info mt-2'><i class="far fa-edit"></i></a>
+                  <button href="#" type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#exampleModal{{s.id}}">
+                    <i class='far fa-trash-alt'></i>
+                  </button>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class='mb-1'></div>
+      {% comment %} <div class='mb-4'></div> {% endcomment %}
+      {% empty %}
+      <h2 class='text-center' style='margin-top: 15%;'>No services made for this car</h2>
+      {% endfor %}
+  </div>
+{% include 'san_diego/service_delete.html' %}
+{% endblock content %}

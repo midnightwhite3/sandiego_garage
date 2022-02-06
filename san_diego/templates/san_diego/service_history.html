@@ -21,6 +21,9 @@
         <div class="accordion" id="accordionExample">
           <div class="card text-center">
             <div class="card-header" id="heading{{s.id}}">
+              <div class="float-left form-check">
+                <input class="form-check-input position-static" type="checkbox" id="{{s.id}}" value="{{s}}" aria-label="...">
+              </div>
               <button class="btn btn-link text-info" type="button" data-toggle="collapse" data-target="#collapse{{s.id}}" aria-expanded="false" aria-controls="collapse{{s.id}}">
                 {{s}}
               </button>
@@ -68,14 +71,25 @@
                     <i class='far fa-trash-alt'></i>
                   </button>
                 </div>
+                
             </div>
           </div>
         </div>
         <div class='mb-1'></div>
-      {% comment %} <div class='mb-4'></div> {% endcomment %}
       {% empty %}
       <h2 class='text-center' style='margin-top: 15%;'>No services made for this car</h2>
       {% endfor %}
+      <input type='submit' class='btn btn-primary' value='Generate PDF' disabled>
   </div>
 {% include 'san_diego/service_delete.html' %}
+
+<!-- Script for enabling button if any of checkboxes are CHECKED -->
+<script>
+  var checkboxes = $("input[type='checkbox']"),
+    submitButt = $("input[type='submit']");
+
+  checkboxes.click(function() {
+    submitButt.attr("disabled", !checkboxes.is(":checked"));
+  });
+</script>
 {% endblock content %}

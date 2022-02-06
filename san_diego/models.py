@@ -46,9 +46,9 @@ class Car(models.Model):
     client = models.ForeignKey(Client,on_delete=models.CASCADE)
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     car_model = models.ForeignKey(CarModel, on_delete=models.CASCADE)
-    year = models.IntegerField(default=None, validators=[
+    year = models.IntegerField(default=None, null=True, blank=True, validators=[
         MinValueValidator(1950, "Enter a valid year."), MaxValueValidator(2050, "Enter a valid year.")])
-    fuel_type = models.CharField(max_length=15, choices=FUEL, default=None)
+    fuel_type = models.CharField(max_length=15, choices=FUEL, default=None, null=True, blank=True)
     engine = models.CharField(null=True, blank=True, max_length=15)
     vin = models.CharField(max_length=17, blank=True, null=True, validators=[
         MinLengthValidator(17, "This VIN number is too short.")])

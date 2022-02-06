@@ -3,7 +3,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView
 from .forms import ClientForm, CarForm, SearchForm, ServiceForm, CarPartsFormSet
 from .models import Car, CarModel, Client, Service
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, TemplateView
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
@@ -332,7 +332,6 @@ class ServiceAddView(CreateView):
     model = Service
     form_class = ServiceForm
     template_name = 'san_diego/service_add.html'
-    success_url = reverse_lazy('car_library') 
 
     def get(self, request, *args, **kwargs):
         self.object = None
@@ -360,10 +359,18 @@ class ServiceAddView(CreateView):
         self.object.save()
         formset.instance = self.object
         formset.save()
-        return redirect('car_library')
+        return redirect(self.get_success_url())
 
     def form_invalid(self, form, formset):
         return self.render_to_response(self.get_context_data(form=form, formset=formset))
+
+    def get_success_url(self):
+        """If statement is adding funcionality to SAVE AND ADD ANOTHER button."""
+        car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'), user=self.request.user)
+        if "another" in self.request.POST:
+            return reverse_lazy('service_add', kwargs={'uuid': car.uuid})
+        return reverse_lazy('service_history', kwargs={'uuid': car.uuid})
+
 
 @method_decorator(login_required, name='dispatch')
 class ServiceHistoryView(ListView):
@@ -376,7 +383,6 @@ class ServiceHistoryView(ListView):
         car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'))
         service = self.get_queryset().annotate(total=Sum(F('carparts__part_price')) + F('service_price'))
         context['car'] = car
-        # context['service'] = service
 
         page = self.request.GET.get('page')
         paginator = Paginator(service, self.paginate_by)
@@ -465,3 +471,13 @@ class ServiceEditView(UpdateView):
     def get_success_url(self):
         car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'), user=self.request.user)
         return reverse_lazy('service_history', kwargs={'uuid': car.uuid})
+
+
+class InvoiceView(TemplateView):
+    template_name = 'invoice.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(InvoiceView, self).get_context_data(**kwargs)
+        car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'))
+        context['car'] = car
+        return context

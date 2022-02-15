@@ -6,7 +6,7 @@
 {% block content %}
     <div class='container'>
         <h1 class='mt-4'>Make an account</h1>
-        <form action='' method='POST' id='registerForm'>
+        <form action='' method='POST' id='registerForm' enctype='multipart/form-data'>
             <hr class='mt-0 mb-4'>
             {% csrf_token %}
             {{ user_form|crispy }}

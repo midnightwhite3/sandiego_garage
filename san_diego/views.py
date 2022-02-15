@@ -1,9 +1,10 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView
-from .forms import ClientForm, CarForm, SearchForm, ServiceForm, CarPartsFormSet
-from .models import Car, CarModel, Client, Service
-from django.views.generic import ListView, CreateView, UpdateView, TemplateView
+from .forms import ClientForm, CarForm, SearchForm, CarPartFormSet, ServiceFormSet
+from .models import Car, CarModel, CarPart, Client, Service
+from account.models import Profile
+from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
@@ -12,7 +13,6 @@ from django.http import Http404
 from django.contrib.postgres.search import SearchVector
 from django.db.models import Sum
 from django.db.models import F
-
 
 def load_car_models(request):
     car_make_id = request.GET.get('car_make')
@@ -143,12 +143,6 @@ class CarUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('car_library')
 
-    # def get(self, request, *args, **kwargs):
-    #     self.object = self.get_object()
-    #     form_class = self.get_form_class()
-    #     form = self.get_form(form_class)
-    #     return self.render_to_response(
-    #         self.get_context_data(form=form))
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -165,9 +159,6 @@ class CarUpdateView(UpdateView):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
-        # car = form.save(commit=False)
-        # car.user = self.request.user
-        # car.save()
         return redirect('car_library')
 
     def form_invalid(self, form):
@@ -330,45 +321,90 @@ class ClientDeleteView(DeleteView):
 @method_decorator(login_required, name='dispatch')
 class ServiceAddView(CreateView):
     model = Service
-    form_class = ServiceForm
     template_name = 'san_diego/service_add.html'
 
     def get(self, request, *args, **kwargs):
         self.object = None
         car = Car.objects.get(uuid=self.kwargs.get('uuid'))
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        formset = CarPartsFormSet()
+        service_formset = ServiceFormSet(queryset=Service.objects.none(), prefix='service_formset')
+        formset = CarPartFormSet(queryset=CarPart.objects.none(), prefix='carpart_formset')
         return self.render_to_response(
-            self.get_context_data(form=form, formset=formset, car=car))
+            self.get_context_data(form=service_formset, formset=formset, car=car))
 
     def post(self, request, *args, **kwargs):
         self.object = None
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        formset = CarPartsFormSet(self.request.POST, instance=self.object)
-        if form.is_valid() and formset.is_valid():
-            return self.form_valid(form, formset)
+        service_formset = ServiceFormSet(self.request.POST, prefix='service_formset')
+        formset = CarPartFormSet(self.request.POST, prefix='carpart_formset')
+        if service_formset.is_valid() and formset.is_valid():
+            return self.form_valid(service_formset, formset)
         else:
-            return self.form_invalid(form, formset)
+            return self.form_invalid(service_formset, formset)
 
-    def form_valid(self, form, formset):
-        self.object = form.save(commit=False)
-        form.instance.car = Car.objects.get(uuid=self.kwargs.get('uuid'))
-        self.object.user = self.request.user
-        self.object.save()
-        formset.instance = self.object
-        formset.save()
+    def form_valid(self, service_formset, formset):
+        form = service_formset.save(commit=False)
+        formset = formset.save(commit=False)
+        for f in form:
+            f.car = Car.objects.get(uuid=self.kwargs.get('uuid'))
+            f.user = self.request.user
+            f.save()
+        for f in formset:
+            f.car = Car.objects.get(uuid=self.kwargs.get('uuid'))
+            f.user = self.request.user
+            f.save()
         return redirect(self.get_success_url())
 
-    def form_invalid(self, form, formset):
-        return self.render_to_response(self.get_context_data(form=form, formset=formset))
+    def form_invalid(self, service_formset, formset):
+        return self.render_to_response(self.get_context_data(form=service_formset, formset=formset))
 
     def get_success_url(self):
         """If statement is adding funcionality to SAVE AND ADD ANOTHER button."""
         car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'), user=self.request.user)
         if "another" in self.request.POST:
             return reverse_lazy('service_add', kwargs={'uuid': car.uuid})
+        return reverse_lazy('service_history', kwargs={'uuid': car.uuid})
+
+
+@method_decorator(login_required, name='dispatch')
+class ServiceEditView(UpdateView):
+    model = Service
+    template_name = 'san_diego/service_add.html'
+    context_object_name = 'service'
+
+    def get(self, request, *args, **kwargs):
+        self.object = None
+        car = Car.objects.get(uuid=self.kwargs.get('uuid'))
+        service_formset = ServiceFormSet(queryset=Service.objects.filter(car=car, user=self.request.user, date_added=self.kwargs.get('date')), prefix='service_formset')
+        formset = CarPartFormSet(queryset=CarPart.objects.filter(car=car, user=self.request.user, pdate_added=self.kwargs.get('date')), prefix='carpart_formset')
+        return self.render_to_response(
+            self.get_context_data(form=service_formset, formset=formset, car=car))
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        service_formset = ServiceFormSet(self.request.POST, prefix='service_formset')
+        formset = CarPartFormSet(self.request.POST, prefix='carpart_formset')
+        if service_formset.is_valid() and formset.is_valid():
+            return self.form_valid(service_formset, formset)
+        else:
+            return self.form_invalid(service_formset, formset)
+
+    def form_valid(self, service_formset, formset):
+        form = service_formset.save(commit=False)
+        formset = formset.save(commit=False)
+        for f in form:
+            f.car = Car.objects.get(uuid=self.kwargs.get('uuid'))
+            f.user = self.request.user
+            f.save()
+        for f in formset:
+            f.car = Car.objects.get(uuid=self.kwargs.get('uuid'))
+            f.user = self.request.user
+            f.save()
+        return redirect(self.get_success_url())
+
+    def form_invalid(self, service_formset, formset):
+        return self.render_to_response(self.get_context_data(form=service_formset, formset=formset))
+
+    def get_success_url(self):
+        car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'), user=self.request.user)
         return reverse_lazy('service_history', kwargs={'uuid': car.uuid})
 
 
@@ -381,25 +417,29 @@ class ServiceHistoryView(ListView):
     def get_context_data(self, **kwargs):
         context = super(ServiceHistoryView, self).get_context_data(**kwargs)
         car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'))
-        service = self.get_queryset().annotate(total=Sum(F('carparts__part_price')) + F('service_price'))
+        # services = self.get_queryset().annotate(total=Sum(F('carparts__part_price')) + F('service_price'))
+        services = self.get_queryset()
+        carparts = CarPart.objects.filter(car=car, user=self.request.user).order_by('-pdate_added')
         context['car'] = car
+        context['services'] = services
+        context['carparts'] = carparts
 
         page = self.request.GET.get('page')
-        paginator = Paginator(service, self.paginate_by)
+        paginator = Paginator(services, self.paginate_by)
 
         try:
-            service = paginator.page(page)
+            services = paginator.page(page)
         except PageNotAnInteger:
-            service = paginator.page(1)
+            services = paginator.page(1)
         except EmptyPage:
-            service = paginator.page(paginator.num_pages)
-        context['service'] = service
+            services = paginator.page(paginator.num_pages)
+        context['services'] = services
         return context
 
     def get_queryset(self, *args):
         self.car = get_object_or_404(Car, uuid=self.kwargs['uuid'], user=self.request.user)
-        service = Service.objects.filter(car=self.car).order_by('-date_added')
-        return service
+        services = Service.objects.filter(car=self.car).order_by('-date_added')
+        return services
 
 
 @method_decorator(login_required, name='dispatch')
@@ -425,59 +465,17 @@ class ServiceDeleteView(DeleteView):
         return service
 
 
-@method_decorator(login_required, name='dispatch')
-class ServiceEditView(UpdateView):
-    model = Service
-    template_name = 'san_diego/service_add.html'
-    context_object_name = 'service'
-    form_class = ServiceForm
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        car = Car.objects.get(uuid=self.kwargs.get('uuid'))
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        formset = CarPartsFormSet(instance=self.object)
-        return self.render_to_response(
-            self.get_context_data(form=form, formset=formset, car=car))
-
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        formset = CarPartsFormSet(self.request.POST, instance=self.object)
-        if form.is_valid() and formset.is_valid():
-            return self.form_valid(form, formset)
-        else:
-            return self.form_invalid(form, formset)
-
-    def get_object(self, **kwargs):
-        sid = self.kwargs.get('id')
-        service = get_object_or_404(Service, id=sid, user=self.request.user)
-        return service
-
-    def form_valid(self, form, formset):
-        self.object = form.save(commit=False)
-        form.instance.car = Car.objects.get(uuid=self.kwargs.get('uuid'))
-        self.object.user = self.request.user
-        self.object.save()
-        formset.instance = self.object
-        formset.save()
-        return redirect(self.get_success_url())
-
-    def form_invalid(self, form, formset):
-        return self.render_to_response(self.get_context_data(form=form, formset=formset))
-
-    def get_success_url(self):
-        car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'), user=self.request.user)
-        return reverse_lazy('service_history', kwargs={'uuid': car.uuid})
-
-
-class InvoiceView(TemplateView):
-    template_name = 'invoice.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(InvoiceView, self).get_context_data(**kwargs)
-        car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'))
-        context['car'] = car
-        return context
+def pdf(request, uuid, *args, **kwargs):
+    """Return car and profile objects to the template. SID is getting the 'value' of checked checkbox
+        and returning it as a list. Service filters objects by IF 'id' is in SID list."""
+    car = get_object_or_404(Car, uuid=uuid)
+    profile = get_object_or_404(Profile, user=request.user)
+    sid = request.POST.getlist('spdf')
+    service = Service.objects.filter(id__in=sid)
+    context = {
+        'car': car,
+        'profile': profile,
+        'sid': sid,
+        'service': service,
+    }
+    return render(request, 'san_diego/invoice.html', context)

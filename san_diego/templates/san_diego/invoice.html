@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <img src='{{profile.logo.url}}'>
+    <h1>{{profile.company_name}}</h1>
+    <h1>{{profile.company_adress}}</h1>
+    <h1>{{profile.nip}}</h1>
+    {{car.client}}
+    {{car.car_make}}
+    {{car.car_model}}
+    {% for s in service %}
+     {{s.service_price}}
+     {% for part in s.carparts_set.all %}
+      {{part.part_price}}
+    {%endfor%}
+    {% endfor %}
+  </body>
+</html>

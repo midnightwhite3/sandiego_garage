@@ -10,7 +10,7 @@
     <link href="{% static 'side.css' %}" rel="stylesheet">
    </head>
 <body>
-  <div class="sidebar">
+  <div class="sidebar open">
     <div class="logo-details">
       <i><img src="{% static 'images/logo.png' %}" width='25' height='25' class='icon'></i>
         <div class="logo_name">GarageApp</div>
@@ -78,6 +78,13 @@
        </a>
        <span class="tooltip">Profile</span>
      </li>
+     <li>
+      <a href="{% url 'car_add' %}">
+        <i class='bx bx-plus-circle' ></i>
+        <span class="links_name">Add car</span>
+      </a>
+      <span class="tooltip">Add car</span>
+    </li>
      <li class="profile">
          <div class="profile-details">
            <!--<img src="profile.jpg" alt="profileImg">-->

@@ -69,7 +69,7 @@ class Service(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     service_name = models.CharField(max_length=150, verbose_name='Service', default=None)
     service_price = models.DecimalField(max_digits=20, decimal_places=2, default=None)
-    date_added = models.DateTimeField(auto_now_add=True)
+    date_added = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.service_name
@@ -79,14 +79,13 @@ class Service(models.Model):
         self.car.save(update_fields=['date_updated'])
         super(Service, self).save(*args, **kwargs)
 
-    class Meta:
-        ordering = ('-date_added',)
 
-
-class CarParts(models.Model):
-    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+class CarPart(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
     car_part = models.CharField(max_length=30, blank=True, null=True, verbose_name='Part')
     part_price = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
+    pdate_added = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return f"Part: {self.car_part}  Price: {self.part_price}"

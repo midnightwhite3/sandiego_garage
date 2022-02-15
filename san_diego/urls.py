@@ -1,7 +1,9 @@
-from django.urls import path
+from django.urls import path, register_converter
 from . import views
 from django.contrib.auth import views as auth_views
+from .converters import DateConverter
 
+register_converter(DateConverter, 'date')
 
 urlpatterns = [
     path('', views.home_view, name='home'),
@@ -23,7 +25,8 @@ urlpatterns = [
     #------ SERVICE VIEWS ------#
     path('cars/<uuid>/add_service', views.ServiceAddView.as_view(), name='service_add'),
     path('cars/<uuid>/service_history', views.ServiceHistoryView.as_view(), name='service_history'),
-    path('cars/<uuid>/<int:id>/delete', views.ServiceDeleteView.as_view(), name='service_delete'),
-    path('cars/<uuid>/<int:id>/edit', views.ServiceEditView.as_view(), name='service_edit'),
-
+    path('cars/<uuid>/<date:date>/delete', views.ServiceDeleteView.as_view(), name='service_delete'),
+    path('cars/<uuid>/service_history/<date:date>/edit', views.ServiceEditView.as_view(), name='service_edit'),
+    #------  INVOICE  ------#
+    path('cars/<uuid>/invoice', views.pdf, name='invoice'),
 ]

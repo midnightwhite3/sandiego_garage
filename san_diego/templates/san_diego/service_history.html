@@ -3,93 +3,88 @@
 {% block title %}Service history{% endblock %}
 
 {% block content %}
-  <div class='container'>
-      <h2 class='mt-4 mb-2 text-center'>{{ car }}</h2>
-    <hr/>
-    <!--  Pginator start  -->
-    <div class='row justify-content-end'>
-      <div class='col'>
-      {% if is_paginated %}
-          {% include 'san_diego/pagination.html' %}
-      {% endif %}
-      </div>
-      <a href="{% url 'service_add' uuid=car.uuid %}" role='button' class='text-info mt-2 mr-4 mb-2'><i class="fas fa-plus"></i>Add service</a>
+<div class='container'>
+  <h2 class='mt-4 mb-2 text-center'>{{ car }}</h2>
+  <hr/>
+  <!--  Pginator start  -->
+  <div class='row justify-content-end'>
+    <div class='col'>
+    {% if is_paginated %}
+        {% include 'san_diego/pagination.html' %}
+    {% endif %}
     </div>
-      <!--  Paginator end -->
-    {% comment %} <div class="accordion" id="accordionExample"> {% endcomment %}
-      {% for s in service %}
-        <div class="accordion" id="accordionExample">
-          <div class="card text-center">
-            <div class="card-header" id="heading{{s.id}}">
-              <div class="float-left form-check">
-                <input class="form-check-input position-static" type="checkbox" id="{{s.id}}" value="{{s}}" aria-label="...">
-              </div>
-              <button class="btn btn-link text-info" type="button" data-toggle="collapse" data-target="#collapse{{s.id}}" aria-expanded="false" aria-controls="collapse{{s.id}}">
-                {{s}}
-              </button>
-              <div class='float-right'>
-                <cite>
-                  {{s.date_added|date:"d M Y"}}
-                </cite>
-              </div>
+    <a href="{% url 'service_add' uuid=car.uuid %}" role='button' class='text-info mt-2 mr-4 mb-2'><i class="fas fa-plus"></i>Add service</a>
+  </div>
+  <!--  Paginator end -->
+  <form method='post' action="{% url 'invoice' uuid=car.uuid %}">
+  {% regroup services by date_added as service_list %}
+  {% regroup carparts by pdate_added as carparts_list %}
+  {%csrf_token%}
+  {% for date_added in service_list %}
+  <div class="accordion" id="accordionExample">
+    <div class="card text-center">
+      <div class="card-header" id="heading{{forloop.counter}}">
+        <h2 class="mb-0">
+          <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse{{forloop.counter}}" aria-expanded="false" aria-controls="collapse{{forloop.counter}}">
+            {{date_added.grouper}}
+          </button>
+        </h2>
+      </div>
+  
+      <div id="collapse{{forloop.counter}}" class="collapse" aria-labelledby="heading{{forloop.counter}}" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class='row'>
+            <div class="col-sm-6">
+              <h5>Service</h5>
             </div>
-            <div id="collapse{{s.id}}" class="collapse" aria-labelledby="heading{{s.id}}" data-parent="#accordionExample">
-              <div class="card-body">
-                <div class='row'>
-                  <div class="col-sm-6">
-                    <h6>{{ s }}</h6>
-                    <hr/>
-                  </div>
-                  <div class="col-sm-6 border-left">
-                    <h6>{{ s.service_price }}</h6>
-                    <hr>
-                  </div>
-                </div>
-                {% for part in s.carparts_set.all %}
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <p>{{ part.car_part }}</p>
-                    </div>
-                    <div class="col-sm-6 border-left">
-                      <p>{{ part.part_price }}</p>
-                    </div>
-                  </div>
-                {% endfor %}
-                {% if s.total != None %}
-                <div class='row'>
-                  <div class="col-sm-4">
-                  </div>
-                  <div class="col-sm-8">
-                    <h6 class='ml-4 pl-4'>&ensp; Total price: &ensp; &ensp; {{ s.total }}</h6>
-                  </div>
-                </div>
-                {% endif %}
-                <!--  Button for modal  -->
-                <div class='row justify-content-end'>
-                  <a href="{{s.id}}/edit" role='button' class='text-info mt-2'><i class="far fa-edit"></i></a>
-                  <button href="#" type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#exampleModal{{s.id}}">
-                    <i class='far fa-trash-alt'></i>
-                  </button>
-                </div>
-                
+            <div class="col-sm-6 border-left">
+              <h5>Price</h5>
             </div>
           </div>
+          <hr>
+          {% for service in date_added.list %}
+            <div class='row'>
+              <div class="col-sm-6">
+                <h6>{{ service }}</h6>
+              </div>
+              <div class="col-sm-6 border-left">
+                <h6>{{ service.service_price }}</h6>
+              </div>
+            </div>
+          {% endfor %}
+          <div class='row mt-4'>
+            <div class="col-sm-6">
+              <h5>Part</h5>
+            </div>
+            <div class="col-sm-6 border-left">
+              <h5>Price</h5>
+            </div>
+          </div>
+          <hr>
+          {% for pdate_added in carparts_list %}
+          {% if pdate_added.grouper == date_added.grouper %}
+            {% for part in pdate_added.list %}
+              <div class='row'>
+                <div class="col-sm-6">
+                  <h6>{{ part.car_part }}</h6>
+                </div>
+                <div class="col-sm-6 border-left">
+                  <h6>{{ part.part_price }}</h6>
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% endfor %}
+          <div class='row justify-content-end'>
+            <a href="{% url 'service_edit' uuid=car.uuid date=date_added.grouper %}" role='button' class='text-info mt-2'><i class="far fa-edit"></i></a>
+          </div>
         </div>
-        <div class='mb-1'></div>
-      {% empty %}
-      <h2 class='text-center' style='margin-top: 15%;'>No services made for this car</h2>
-      {% endfor %}
-      <input type='submit' class='btn btn-primary' value='Generate PDF' disabled>
+      </div>
+    </div>
   </div>
-{% include 'san_diego/service_delete.html' %}
+  <!-- MARGIN BOTTOM BELOW EVERY ACCORDION ITEM -->
+  <div class='mb-1'></div>
+  {% endfor %}
 
-<!-- Script for enabling button if any of checkboxes are CHECKED -->
-<script>
-  var checkboxes = $("input[type='checkbox']"),
-    submitButt = $("input[type='submit']");
-
-  checkboxes.click(function() {
-    submitButt.attr("disabled", !checkboxes.is(":checked"));
-  });
-</script>
-{% endblock content %}
+</div>
+{% endblock %}

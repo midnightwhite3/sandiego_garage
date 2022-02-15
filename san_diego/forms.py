@@ -1,6 +1,7 @@
+from sys import prefix
 from django import forms
-from django.forms.models import inlineformset_factory
-from .models import Car, CarMake, CarParts, Service, Client, CarModel
+from django.forms.models import inlineformset_factory, modelformset_factory
+from .models import Car, CarMake, CarPart, Service, Client, CarModel
 
 
 class ClientForm(forms.ModelForm):
@@ -61,13 +62,19 @@ class ServiceForm(forms.ModelForm):
         }
 
 
-class CarPartsForm(forms.ModelForm):
+class CarPartForm(forms.ModelForm):
     class Meta:
-        model = CarParts
+        model = CarPart
         fields = ['car_part', 'part_price']
 
 
-CarPartsFormSet = inlineformset_factory(Service, CarParts, form=CarPartsForm, can_delete=False, extra=0, widgets={
+ServiceFormSet = modelformset_factory(Service, form=ServiceForm, fields=['service_name', 'service_price'], widgets={
+    'service_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Service name'}),
+    'service_price': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Service price'}),
+})
+
+
+CarPartFormSet = modelformset_factory(CarPart, form=CarPartForm, extra=0, widgets={
     'car_part': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Part'}),
     'part_price': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Price'}),
 })

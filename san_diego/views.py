@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.contrib.postgres.search import SearchVector
 from django.db.models import Sum
 from django.db.models import F
@@ -333,12 +333,13 @@ class ServiceAddView(CreateView):
 
     def post(self, request, *args, **kwargs):
         self.object = None
+        car = Car.objects.get(uuid=self.kwargs.get('uuid'))
         service_formset = ServiceFormSet(self.request.POST, prefix='service_formset')
         formset = CarPartFormSet(self.request.POST, prefix='carpart_formset')
         if service_formset.is_valid() and formset.is_valid():
             return self.form_valid(service_formset, formset)
         else:
-            return self.form_invalid(service_formset, formset)
+            return self.form_invalid(service_formset, formset, car)
 
     def form_valid(self, service_formset, formset):
         form = service_formset.save(commit=False)
@@ -353,8 +354,8 @@ class ServiceAddView(CreateView):
             f.save()
         return redirect(self.get_success_url())
 
-    def form_invalid(self, service_formset, formset):
-        return self.render_to_response(self.get_context_data(form=service_formset, formset=formset))
+    def form_invalid(self, service_formset, formset, car):
+        return self.render_to_response(self.get_context_data(form=service_formset, formset=formset, car=car))
 
     def get_success_url(self):
         """If statement is adding funcionality to SAVE AND ADD ANOTHER button."""
@@ -368,18 +369,22 @@ class ServiceAddView(CreateView):
 class ServiceEditView(UpdateView):
     model = Service
     template_name = 'san_diego/service_add.html'
-    context_object_name = 'service'
+
+    def get_object(self):
+        """Pass UUID"""
+        return Car.objects.get(uuid=self.kwargs.get("uuid"))
 
     def get(self, request, *args, **kwargs):
-        self.object = None
-        car = Car.objects.get(uuid=self.kwargs.get('uuid'))
-        service_formset = ServiceFormSet(queryset=Service.objects.filter(car=car, user=self.request.user, date_added=self.kwargs.get('date')), prefix='service_formset')
-        formset = CarPartFormSet(queryset=CarPart.objects.filter(car=car, user=self.request.user, pdate_added=self.kwargs.get('date')), prefix='carpart_formset')
+        self.object =self.get_object()
+        service_formset = ServiceFormSet(queryset=Service.objects.filter(
+            car=self.get_object(), user=self.request.user, date_added=self.kwargs.get('date')), prefix='service_formset')
+        formset = CarPartFormSet(queryset=CarPart.objects.filter(
+            car=self.get_object(), user=self.request.user, pdate_added=self.kwargs.get('date')), prefix='carpart_formset')
         return self.render_to_response(
-            self.get_context_data(form=service_formset, formset=formset, car=car))
+            self.get_context_data(form=service_formset, formset=formset))
 
     def post(self, request, *args, **kwargs):
-        self.object = None
+        self.object = self.get_object()
         service_formset = ServiceFormSet(self.request.POST, prefix='service_formset')
         formset = CarPartFormSet(self.request.POST, prefix='carpart_formset')
         if service_formset.is_valid() and formset.is_valid():
@@ -391,18 +396,18 @@ class ServiceEditView(UpdateView):
         form = service_formset.save(commit=False)
         formset = formset.save(commit=False)
         for f in form:
-            f.car = Car.objects.get(uuid=self.kwargs.get('uuid'))
+            f.car = self.get_object()
             f.user = self.request.user
             f.save()
         for f in formset:
-            f.car = Car.objects.get(uuid=self.kwargs.get('uuid'))
+            f.car = self.get_object()
             f.user = self.request.user
             f.save()
         return redirect(self.get_success_url())
 
     def form_invalid(self, service_formset, formset):
-        return self.render_to_response(self.get_context_data(form=service_formset, formset=formset))
-
+        # return self.render_to_response(self.get_context_data(form=service_formset, formset=formset))
+        return HttpResponse('invalid')
     def get_success_url(self):
         car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'), user=self.request.user)
         return reverse_lazy('service_history', kwargs={'uuid': car.uuid})

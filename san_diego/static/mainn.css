@@ -40,7 +40,9 @@ footer {
     min-width: 100%;
     height: 32rem;
   }
-  
+hr.dashed {
+  border-top: 2px dashed #999;
+}
   
   /* MARKETING CONTENT
   -------------------------------------------------- */

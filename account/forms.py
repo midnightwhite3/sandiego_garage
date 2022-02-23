@@ -78,5 +78,9 @@ class ProfileEditForm(forms.ModelForm):
             'logo': forms.FileInput(attrs={'class': 'form-control'}),
             'company_name': forms.TextInput(attrs={'class': 'form-control'}),
             'company_adress': forms.TextInput(attrs={'class': 'form-control'}),
+            'post_code_city': forms.TextInput(attrs={'class': 'form-control'}),
             'nip': forms.NumberInput(attrs={'class': 'form-control'})
+        }
+        labels = {
+            'post_code_city': 'Post code and City'
         }

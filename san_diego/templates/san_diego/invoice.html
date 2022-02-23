@@ -1,17 +1,146 @@
-<html>
+{%load static%}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link href="{% static 'bootstrap.css' %}" rel="stylesheet">
+    
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Custom styles for this template -->
+    <style>
+      table {
+        font-family: HeiseiKakuGo-W5, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      {% comment %} td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      } {% endcomment %}
+      
+      </style>
+  </head>
   <body>
-    <img src='{{profile.logo.url}}'>
-    <h1>{{profile.company_name}}</h1>
-    <h1>{{profile.company_adress}}</h1>
-    <h1>{{profile.nip}}</h1>
-    {{car.client}}
-    {{car.car_make}}
-    {{car.car_model}}
-    {% for s in service %}
-     {{s.service_price}}
-     {% for part in s.carparts_set.all %}
-      {{part.part_price}}
-    {%endfor%}
-    {% endfor %}
+    <div class='container'>
+      <img src='{{profile.logo.path}}' style='text-align: center;'>
+
+      <!-- INFO TABLE -->
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td colspan="2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="49%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td style="font-weight:400; font-size:14px;">{{profile.company_name}}</td>
+              </tr>
+                <td style="font-weight:300; font-size:13px;">{{profile.company_adress}}</td>
+              </tr>
+              </tr>
+                <td style="font-weight:300; font-size:13px;">{{profile.post_code_city}}</td>
+              </tr>
+              </tr>
+                <td style="font-weight:300; font-size:13px;">{{profile.nip}}</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+              </tr>
+              </table></td>
+          </tr>
+        </table></td>
+        <td width="51%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td style="font-weight:300; font-size:13px;" align="right"></td>
+          </tr>
+          <tr>
+            <td style="font-weight:300; font-size:13px;"  align="right">&nbsp;</td>
+          </tr>
+          {% if car.client %}
+          <tr>
+            <td style="font-weight:300; font-size:13px;"  align="right">{{car.client}}</td>
+          </tr>
+          {% endif %}
+          <tr>
+            <td style="font-weight:300; font-size:13px;" align="right">{{car.car_make}}</td>
+          </tr>
+          <tr>
+            <td style="font-weight:300; font-size:13px;" align="right">{{car.car_model}}</td>
+          </tr>
+          <tr>
+            <td style="font-weight:300; font-size:13px;" align="right">{{data.address}}</td>
+          </tr>
+    
+        </table></td>
+      </tr>
+      <tr>
+        <td colspan="2">&nbsp;</td>
+      </tr>
+      <tr>
+
+        <!-- SERVICES TABLE -->
+        <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td style="font-weight:600; font-size:13px; border:1px solid #333" width="5%" height="32" align="center">#</td>
+            <td style="font-weight:600; font-size:13px; border:1px solid #333;" width="80%" align="center">Nazwa usługi</td>
+            <td style="font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;" width="15%" align="center">Cena</td>
+          </tr>
+          {% for service in services %}
+          <tr>
+            <td style="font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" height="32" align="center">{{forloop.counter}}</td>
+            <td style="font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;" align="center">{{service.service_name}}</td>
+            <td style="font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;" align="center">{{service.service_price}}</td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <th></th>
+            <td></td>
+            {% for sum in stpp %}
+              <td style="font-weight:500; font-size:15px; border:1px solid #333;" align='center'>{{sum.sum}}</td>
+            {% endfor %}
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+
+      <!-- CARPARTS TABLE -->
+      <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td style="font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" width="5%" height="32" align="center">#</td>
+          <td style="font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;" width="80%" align="center">Nazwa części</td>
+          <td style="font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;" width="15%" align="center">Cena</td>
+        </tr>
+        {% for part in carparts %}
+        <tr>
+          <td style="font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" height="32" align="center">{{forloop.counter}}</td>
+          <td style="font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;" align="center">{{part.car_part}}</td>
+          <td style="font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;" align="center">{{part.part_price}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <th></th>
+          <td></td>
+          {% for sum in ptpp %}
+            <td style="font-weight:500; font-size:15px; border:1px solid #333;" align='center'>{{sum.sum}}</td>
+          {% endfor %}
+        </tr>
+      </table></td>
+    </tr>
+    </table>
+    <p align='center' style="font-weight:500; font-size:15px;">Razem: {% for total in total %}{{total.total}}{% endfor %}</p>
   </body>
 </html>

@@ -4,7 +4,7 @@ from django.views.generic.edit import DeleteView
 from .forms import ClientForm, CarForm, SearchForm, CarPartFormSet, ServiceFormSet
 from .models import Car, CarModel, CarPart, Client, Service
 from account.models import Profile
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, TemplateView
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
@@ -12,7 +12,17 @@ from django.utils.decorators import method_decorator
 from django.http import Http404, HttpResponse
 from django.contrib.postgres.search import SearchVector
 from django.db.models import Sum
-from django.db.models import F
+from io import BytesIO
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+import os
+from django.conf import settings
+
+def fetch_resources(uri, rel):
+    path = os.join(settings.STATIC_ROOT, uri.replace(settings.STATIC_URL, "bootstrap.css"))
+    return path
+
 
 def load_car_models(request):
     car_make_id = request.GET.get('car_make')
@@ -406,8 +416,8 @@ class ServiceEditView(UpdateView):
         return redirect(self.get_success_url())
 
     def form_invalid(self, service_formset, formset):
-        # return self.render_to_response(self.get_context_data(form=service_formset, formset=formset))
-        return HttpResponse('invalid')
+        return self.render_to_response(self.get_context_data(form=service_formset, formset=formset))
+    
     def get_success_url(self):
         car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'), user=self.request.user)
         return reverse_lazy('service_history', kwargs={'uuid': car.uuid})
@@ -424,10 +434,27 @@ class ServiceHistoryView(ListView):
         car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'))
         # services = self.get_queryset().annotate(total=Sum(F('carparts__part_price')) + F('service_price'))
         services = self.get_queryset()
+        services_total_price_perday = self.get_queryset().filter().values('date_added').order_by(
+            '-date_added').annotate(sum=Sum('service_price'))
         carparts = CarPart.objects.filter(car=car, user=self.request.user).order_by('-pdate_added')
+        parts_total_price_perday = carparts.filter().values('pdate_added').annotate(sum=Sum('part_price'))
+        total = []
+        for item in services_total_price_perday:
+            for i in parts_total_price_perday:
+                if item['date_added'] == i['pdate_added']:
+                    tp = item['sum'] + i['sum']
+                    td = {
+                        'total': tp,
+                        'date': item['date_added']
+                    }
+                    total.append(td)
+
         context['car'] = car
         context['services'] = services
         context['carparts'] = carparts
+        context['services_total_price_perday'] = services_total_price_perday
+        context['parts_total_price_perday'] = parts_total_price_perday
+        context['total'] = total
 
         page = self.request.GET.get('page')
         paginator = Paginator(services, self.paginate_by)
@@ -470,17 +497,85 @@ class ServiceDeleteView(DeleteView):
         return service
 
 
-def pdf(request, uuid, *args, **kwargs):
-    """Return car and profile objects to the template. SID is getting the 'value' of checked checkbox
-        and returning it as a list. Service filters objects by IF 'id' is in SID list."""
+# @method_decorator(login_required, name='dispatch')
+# class InvoiceView(TemplateView):
+#     template_name = 'san_diego/invoice.html'
+
+#     def get_object(self):
+#         car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'), user=self.request.user)
+#         return car
+    
+#     def get_context_data(self, *args, **kwargs):
+#         context = super(InvoiceView, self).get_context_data(**kwargs)
+#         profile = get_object_or_404(Profile, user=self.request.user)
+#         services = Service.objects.filter(car=self.get_object(), user=self.request.user, date_added=kwargs.get('date'))
+#         carparts = CarPart.objects.filter(car=self.get_object(), user=self.request.user, pdate_added=kwargs.get('date'))
+#         services_total_price_perday = services.filter().values('date_added').order_by(
+#             '-date_added').annotate(sum=Sum('service_price'))
+#         parts_total_price_perday = carparts.filter().values('pdate_added').annotate(sum=Sum('part_price'))
+#         total = []
+#         for item in services_total_price_perday:
+#             for i in parts_total_price_perday:
+#                 if item['date_added'] == i['pdate_added']:
+#                     tp = item['sum'] + i['sum']
+#                     td = {
+#                         'total': tp,
+#                         'date': item['date_added']
+#                     }
+#                     total.append(td)
+
+#         context['services'] = services
+#         context['carparts'] = carparts
+#         context['profile'] = profile
+#         context['car'] = self.get_object()
+#         context['stpp'] = services_total_price_perday
+#         context['ptpp'] = parts_total_price_perday
+#         context['total'] = total
+#         return context
+
+
+def generate_invoice_pdf(request, uuid, *args, **kwargs):
+    template_path = 'san_diego/invoice.html'
     car = get_object_or_404(Car, uuid=uuid)
     profile = get_object_or_404(Profile, user=request.user)
-    sid = request.POST.getlist('spdf')
-    service = Service.objects.filter(id__in=sid)
+    services = Service.objects.filter(car=car, user=request.user, date_added=kwargs.get('date'))
+    carparts = CarPart.objects.filter(car=car, user=request.user, pdate_added=kwargs.get('date'))
+    services_total_price_perday = services.filter().values('date_added').order_by(
+            '-date_added').annotate(sum=Sum('service_price'))
+    parts_total_price_perday = carparts.filter().values('pdate_added').annotate(sum=Sum('part_price'))
+    total = []
+    for item in services_total_price_perday:
+        for i in parts_total_price_perday:
+            if item['date_added'] == i['pdate_added']:
+                tp = item['sum'] + i['sum']
+                td = {
+                    'total': tp,
+                    'date': item['date_added']
+                }
+                total.append(td)
+
     context = {
         'car': car,
         'profile': profile,
-        'sid': sid,
-        'service': service,
+        'services': services,
+        'carparts': carparts,
+        'stpp': services_total_price_perday,
+        'ptpp': parts_total_price_perday,
+        'total': total,
     }
-    return render(request, 'san_diego/invoice.html', context)
+
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="{}.pdf"'.format(car)
+    # response['Content-Disposition'] = 'attachment; filename="{}.pdf"'.format(car)
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response

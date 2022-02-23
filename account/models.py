@@ -10,6 +10,7 @@ class Profile(models.Model):
     logo = models.ImageField(upload_to='users/%Y/%m/%d', blank=True)
     company_name = models.CharField(max_length=40, blank=True)
     company_adress = models.CharField(max_length=60, blank=True)
+    post_code_city = models.CharField(max_length=30, blank=True)
     nip = models.CharField(max_length=10, blank=True)
 
     def __str__(self):

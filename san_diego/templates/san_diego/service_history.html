@@ -15,8 +15,13 @@
     </div>
     <a href="{% url 'service_add' uuid=car.uuid %}" role='button' class='text-info mt-2 mr-4 mb-2'><i class="fas fa-plus"></i>Add service</a>
   </div>
+  <style>
+    hr.dashed {
+      border-top: 2px dashed #999;
+    }
+  </style>
   <!--  Paginator end -->
-  <form method='post' action="{% url 'invoice' uuid=car.uuid %}">
+  {% comment %} <form method='post' action="{% url 'invoice' uuid=car.uuid date= %}"> {% endcomment %}
   {% regroup services by date_added as service_list %}
   {% regroup carparts by pdate_added as carparts_list %}
   {%csrf_token%}
@@ -45,13 +50,25 @@
           {% for service in date_added.list %}
             <div class='row'>
               <div class="col-sm-6">
-                <h6>{{ service }}</h6>
+                <p class='font-italic'>{{ service }}</p>
               </div>
               <div class="col-sm-6 border-left">
-                <h6>{{ service.service_price }}</h6>
+                <p class='font-italic'>{{ service.service_price }}</p>
               </div>
             </div>
           {% endfor %}
+          {% for total in services_total_price_perday %}
+            {% if total.date_added == date_added.grouper %}
+              <div class='row'>
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-8">
+                  <h6 class='ml-4 pl-4 mb-2'>&ensp; Services total: &ensp; &ensp;{{ total.sum }}</h6>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+          <hr class='dashed mb-2'>
           <div class='row mt-4'>
             <div class="col-sm-6">
               <h5>Part</h5>
@@ -66,17 +83,40 @@
             {% for part in pdate_added.list %}
               <div class='row'>
                 <div class="col-sm-6">
-                  <h6>{{ part.car_part }}</h6>
+                  <p class='font-italic'>{{ part.car_part }}</p>
                 </div>
                 <div class="col-sm-6 border-left">
-                  <h6>{{ part.part_price }}</h6>
+                  <p class='font-italic'>{{ part.part_price }}</p>
                 </div>
               </div>
             {% endfor %}
           {% endif %}
           {% endfor %}
+          {% for total in parts_total_price_perday %}
+            {% if total.pdate_added == date_added.grouper %}
+              <div class='row'>
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-8">
+                  <h6 class='ml-4 pl-4 mb-2'>&ensp; Parts total: &ensp; &ensp; {{ total.sum }}</h6>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+          {% for total in total %}
+            {% if total.date == date_added.grouper %}
+              <div class='row'>
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-8">
+                  <h5 class='ml-4 pl-4 mb-2 mt-4'>&ensp; Total: &ensp; &ensp; {{ total.total }}</h5>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
           <div class='row justify-content-end'>
             <a href="{% url 'service_edit' uuid=car.uuid date=date_added.grouper %}" role='button' class='text-info mt-2'><i class="far fa-edit"></i></a>
+            <a href ="{% url 'invoice' uuid=car.uuid date=date_added.grouper %}" role='button' class='text-info mt-2 ml-2'><i class='bx bx-printer'></i></a>
           </div>
         </div>
       </div>
@@ -85,6 +125,5 @@
   <!-- MARGIN BOTTOM BELOW EVERY ACCORDION ITEM -->
   <div class='mb-1'></div>
   {% endfor %}
-
 </div>
 {% endblock %}

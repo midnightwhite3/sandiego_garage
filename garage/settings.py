@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # third party apps
     'bootstrap4',
     'crispy_forms',
+    # 'html2pdf',
     # 'bootstrap5',
 
     ###
@@ -143,7 +144,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'garage.storage.WhiteNoiseStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -168,4 +169,4 @@ EMAIL_USE_TLS = True
 # MEDIA 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

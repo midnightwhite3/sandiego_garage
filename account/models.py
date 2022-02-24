@@ -7,7 +7,7 @@ User._meta.get_field('email')._unique = True # This is for setting e-mail field 
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    logo = models.ImageField(upload_to='users/%Y/%m/%d', blank=True)
+    logo = models.ImageField(blank=True)
     company_name = models.CharField(max_length=40, blank=True)
     company_adress = models.CharField(max_length=60, blank=True)
     post_code_city = models.CharField(max_length=30, blank=True)

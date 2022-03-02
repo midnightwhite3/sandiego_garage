@@ -1,5 +1,4 @@
 <!-- Modal -->
-{% for s in service %}
 <div class="modal fade" id="exampleModal{{s.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -10,10 +9,10 @@
           </button>
         </div>
         <div class="modal-body">
-          Are you sure you want to delete this service?
+          Are you sure you want to delete services and parts from this day?
         </div>
         <div class="modal-footer">
-          <form action="{{s.id}}/delete" method="POST">
+          <form action="{% url 'service_history' uuid=car.uuid %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger">Delete</button>
           </form>
@@ -21,4 +20,3 @@
       </div>
     </div>
   </div>
-{% endfor %}

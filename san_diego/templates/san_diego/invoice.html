@@ -1,4 +1,4 @@
-{%load static%}
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -11,7 +11,8 @@
     <!-- Custom styles for this template -->
     <style>
       table {
-        font-family: HeiseiKakuGo-W5, sans-serif;
+        font-family: STSong-Light;
+        {% comment %} src: url("{{static_root}}\Poppins-ExtraLight.ttf"); {% endcomment %}
         border-collapse: collapse;
         width: 100%;
       }
@@ -26,7 +27,7 @@
   </head>
   <body>
     <div class='container'>
-      <img src='{{profile.logo.path}}' style='text-align: center;'>
+      <img src='{{profile.logo.path}}' style='text-align: center; width: 150; height: 150;'>
 
       <!-- INFO TABLE -->
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -48,9 +49,16 @@
               </tr>
                 <td style="font-weight:300; font-size:13px;">{{profile.post_code_city}}</td>
               </tr>
+              {% if profile.phone_number %}
               </tr>
-                <td style="font-weight:300; font-size:13px;">{{profile.nip}}</td>
+                <td style="font-weight:300; font-size:13px;">Kontakt: {{profile.phone_number}}</td>
               </tr>
+              {% endif %}
+              {% if profile.nip %}
+              </tr>
+                <td style="font-weight:300; font-size:13px;">NIP: {{profile.nip}}</td>
+              </tr>
+              {% endif %}
               <tr>
                 <td>&nbsp;</td>
               </tr>
@@ -68,6 +76,8 @@
           <tr>
             <td style="font-weight:300; font-size:13px;"  align="right">{{car.client}}</td>
           </tr>
+          {% elif car.client == Brak %}
+          {% elif car.client == None %}
           {% endif %}
           <tr>
             <td style="font-weight:300; font-size:13px;" align="right">{{car.car_make}}</td>

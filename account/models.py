@@ -11,6 +11,7 @@ class Profile(models.Model):
     company_name = models.CharField(max_length=40, blank=True)
     company_adress = models.CharField(max_length=60, blank=True)
     post_code_city = models.CharField(max_length=30, blank=True)
+    phone_number = models.CharField(max_length=9, blank=True)
     nip = models.CharField(max_length=10, blank=True)
 
     def __str__(self):

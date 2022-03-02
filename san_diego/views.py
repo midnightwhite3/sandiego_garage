@@ -12,7 +12,7 @@ from django.utils.decorators import method_decorator
 from django.http import Http404, HttpResponse
 from django.contrib.postgres.search import SearchVector
 from django.db.models import Sum
-from io import BytesIO
+from io import BytesIO, StringIO
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
@@ -402,16 +402,18 @@ class ServiceEditView(UpdateView):
         else:
             return self.form_invalid(service_formset, formset)
 
-    def form_valid(self, service_formset, formset):
+    def form_valid(self, service_formset, formset, **kwargs):
         form = service_formset.save(commit=False)
         formset = formset.save(commit=False)
         for f in form:
             f.car = self.get_object()
             f.user = self.request.user
+            f.date_added = self.kwargs.get('date')
             f.save()
         for f in formset:
             f.car = self.get_object()
             f.user = self.request.user
+            f.pdate_added = self.kwargs.get('date')
             f.save()
         return redirect(self.get_success_url())
 
@@ -474,27 +476,13 @@ class ServiceHistoryView(ListView):
         return services
 
 
-@method_decorator(login_required, name='dispatch')
-class ServiceDeleteView(DeleteView):
-    model = Service
-    template = 'san_diego/service_delete.html'
-    context_object_name= 'service'
-
-    def get_success_url(self):
-        car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'))
-        return reverse_lazy('service_history', kwargs={'uuid': car.uuid})
-
-    def get_context_data(self, **kwargs):
-        context = super(ServiceDeleteView, self).get_context_data(**kwargs)
-        car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'))
-        context['car'] = car
-        return context
-        
-
-    def get_object(self, queryset=None):
-        sid = self.kwargs.get('id')
-        service = get_object_or_404(Service, id=sid, user=self.request.user)
-        return service
+def services_parts_delete(request, **kwargs):
+    car = get_object_or_404(Car, uuid=kwargs.get('uuid'))
+    services = Service.objects.filter(car=car, user=request.user, date_added=kwargs.get('date'))
+    carparts = CarPart.objects.filter(car=car, user=request.user, pdate_added=kwargs.get('date'))
+    services.delete()
+    carparts.delete()
+    return redirect('service_history', uuid=car.uuid)
 
 
 # @method_decorator(login_required, name='dispatch')
@@ -553,6 +541,7 @@ def generate_invoice_pdf(request, uuid, *args, **kwargs):
                     'date': item['date_added']
                 }
                 total.append(td)
+    static_root = settings.STATIC_ROOT
 
     context = {
         'car': car,
@@ -562,6 +551,7 @@ def generate_invoice_pdf(request, uuid, *args, **kwargs):
         'stpp': services_total_price_perday,
         'ptpp': parts_total_price_perday,
         'total': total,
+        'static_root': static_root,
     }
 
     # Create a Django response object, and specify content_type as pdf
@@ -574,7 +564,7 @@ def generate_invoice_pdf(request, uuid, *args, **kwargs):
 
     # create a pdf
     pisa_status = pisa.CreatePDF(
-       html, dest=response)
+       html.encode('utf-8'), dest=response, encoding='UTF-8')
     # if error then show some funy view
     if pisa_status.err:
        return HttpResponse('We had some errors <pre>' + html + '</pre>')

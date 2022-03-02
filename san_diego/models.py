@@ -1,7 +1,9 @@
+from turtle import update
 from django.db import models
 from django.conf import settings
 from shortuuid.django_fields import ShortUUIDField
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
+import datetime
 # Create your models here.
 
 class CarMake(models.Model):
@@ -69,7 +71,7 @@ class Service(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     service_name = models.CharField(max_length=150, verbose_name='Service', default=None)
     service_price = models.DecimalField(max_digits=20, decimal_places=2, default=None)
-    date_added = models.DateField(auto_now_add=True)
+    date_added = models.DateField(default=datetime.date.today)
 
     def __str__(self):
         return self.service_name
@@ -85,7 +87,7 @@ class CarPart(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     car_part = models.CharField(max_length=30, blank=True, null=True, verbose_name='Part')
     part_price = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
-    pdate_added = models.DateField(auto_now_add=True)
+    pdate_added = models.DateField(default=datetime.date.today)
 
     def __str__(self):
         return f"Part: {self.car_part}  Price: {self.part_price}"

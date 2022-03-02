@@ -25,7 +25,7 @@ urlpatterns = [
     #------ SERVICE VIEWS ------#
     path('cars/<uuid>/add_service', views.ServiceAddView.as_view(), name='service_add'),
     path('cars/<uuid>/service_history', views.ServiceHistoryView.as_view(), name='service_history'),
-    path('cars/<uuid>/<date:date>/delete', views.ServiceDeleteView.as_view(), name='service_delete'),
+    path('cars/<uuid>/<date:date>/delete', views.services_parts_delete, name='service_delete'),
     path('cars/<uuid>/service_history/<date:date>/edit', views.ServiceEditView.as_view(), name='service_edit'),
     #------  INVOICE  ------#
     path('cars/<uuid>/invoice/<date:date>', views.generate_invoice_pdf, name='invoice'),

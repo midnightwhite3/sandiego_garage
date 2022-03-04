@@ -68,13 +68,13 @@ class CarPartForm(forms.ModelForm):
         fields = ['car_part', 'part_price']
 
 
-ServiceFormSet = modelformset_factory(Service, form=ServiceForm, extra=0, fields=['service_name', 'service_price'], widgets={
+ServiceFormSet = modelformset_factory(Service, form=ServiceForm, extra=0, fields=['service_name', 'service_price'], can_delete=True, widgets={
     'service_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Service name'}),
     'service_price': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Service price'}),
 })
 
 
-CarPartFormSet = modelformset_factory(CarPart, form=CarPartForm, fields=['car_part', 'part_price'], extra=0, widgets={
+CarPartFormSet = modelformset_factory(CarPart, form=CarPartForm, fields=['car_part', 'part_price'], can_delete=True, extra=0, widgets={
     'car_part': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Part'}),
     'part_price': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Price'}),
 })

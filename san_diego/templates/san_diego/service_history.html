@@ -105,13 +105,7 @@
           {% endfor %}
           {% for total in total %}
             {% if total.date == date_added.grouper %}
-              <div class='row'>
-                <div class="col-sm-4">
-                </div>
-                <div class="col-sm-8">
-                  <h5 class='ml-4 pl-4 mb-2 mt-4'>&ensp; Total: &ensp; &ensp; {{ total.total }}</h5>
-                </div>
-              </div>
+                <h5 class='ml-4 pl-4 mb-2 mt-4'>Total price: &ensp; {{ total.total }}</h5>
             {% endif %}
           {% endfor %}
           <div class='row justify-content-end'>

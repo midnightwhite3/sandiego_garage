@@ -68,7 +68,7 @@ class Car(models.Model):
 class Service(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
-    service_name = models.CharField(max_length=150, verbose_name='Service', default=None)
+    service_name = models.CharField(max_length=100, verbose_name='Service', default=None)
     service_price = models.DecimalField(max_digits=20, decimal_places=2, default=None)
     date_added = models.DateField(default=datetime.date.today)
 
@@ -84,7 +84,7 @@ class Service(models.Model):
 class CarPart(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
-    car_part = models.CharField(max_length=30, blank=True, null=True, verbose_name='Part')
+    car_part = models.CharField(max_length=100, blank=True, null=True, verbose_name='Part')
     part_price = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
     pdate_added = models.DateField(default=datetime.date.today)
 

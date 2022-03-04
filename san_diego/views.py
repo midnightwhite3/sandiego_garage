@@ -404,17 +404,22 @@ class ServiceEditView(UpdateView):
 
     def form_valid(self, service_formset, formset, **kwargs):
         form = service_formset.save(commit=False)
-        formset = formset.save(commit=False)
+        parts_form = formset.save(commit=False)
         for f in form:
             f.car = self.get_object()
             f.user = self.request.user
             f.date_added = self.kwargs.get('date')
             f.save()
-        for f in formset:
+        for f in parts_form:
             f.car = self.get_object()
             f.user = self.request.user
             f.pdate_added = self.kwargs.get('date')
             f.save()
+        """Loop for deleting objects with can_delete=True checkbox to actually delete them"""
+        for obj in service_formset.deleted_objects:
+            obj.delete()
+        for obj in formset.deleted_objects:
+            obj.delete()
         return redirect(self.get_success_url())
 
     def form_invalid(self, service_formset, formset):
@@ -480,9 +485,19 @@ def services_parts_delete(request, **kwargs):
     car = get_object_or_404(Car, uuid=kwargs.get('uuid'))
     services = Service.objects.filter(car=car, user=request.user, date_added=kwargs.get('date'))
     carparts = CarPart.objects.filter(car=car, user=request.user, pdate_added=kwargs.get('date'))
-    services.delete()
-    carparts.delete()
-    return redirect('service_history', uuid=car.uuid)
+    # services.delete()
+    # carparts.delete()
+    context = {
+        'car': car,
+        'services': services,
+        'carparts': carparts,
+        'date': kwargs.get('date'),
+    }
+    if request.method == 'POST':
+        services.delete()
+        carparts.delete()
+        return redirect('service_history', uuid=car.uuid)
+    return render(request, 'san_diego/service_delete.html', context)
 
 
 # @method_decorator(login_required, name='dispatch')

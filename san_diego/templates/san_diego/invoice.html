@@ -12,11 +12,11 @@
     <style>
       @font-face {
         font-family: Poppins;
-        src: url('C:\Users\krzys\OneDrive\Pulpit\garage\san_diego\static\Poppins-Light.ttf');
+        src: url('{{static_root}}/Poppins-Light.ttf');
       }
       @font-face {
         font-family: Poppins;
-        src: url('C:\Users\krzys\OneDrive\Pulpit\garage\san_diego\static\Poppins-Bold.ttf');
+        src: url('{{static_root}}/Poppins-Bold.ttf');
         font-weight: bold;
       }
       body {
@@ -152,6 +152,5 @@
     </tr>
     </table>
     <p align='center' style="font-weight:500; font-size:15px;">Razem: {% if total %}{% for total in total %}{{total.total}}{% endfor %}{% else %}{%for sum in stpp%}{{sum.sum}}{%endfor%}{% endif %} zł.</p>
-  <img src="{{static_root}}/images/logo.png">
   </body>
 </html>

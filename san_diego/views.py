@@ -536,6 +536,7 @@ def services_parts_delete(request, **kwargs):
 #         context['total'] = total
 #         return context
 
+from .converters import link_callback
 
 def generate_invoice_pdf(request, uuid, *args, **kwargs):
     template_path = 'san_diego/invoice.html'
@@ -579,7 +580,7 @@ def generate_invoice_pdf(request, uuid, *args, **kwargs):
 
     # create a pdf
     pisa_status = pisa.CreatePDF(
-       html.encode('utf-8'), dest=response, encoding='UTF-8')
+       html.encode('utf-8'), dest=response)
     # if error then show some funy view
     if pisa_status.err:
        return HttpResponse('We had some errors <pre>' + html + '</pre>')

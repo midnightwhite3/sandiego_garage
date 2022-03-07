@@ -1,4 +1,4 @@
-
+{%load static%}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -10,25 +10,23 @@
 
     <!-- Custom styles for this template -->
     <style>
-      table {
-        font-family: STSong-Light;
-        {% comment %} src: url("{{static_root}}\Poppins-ExtraLight.ttf"); {% endcomment %}
-        border-collapse: collapse;
-        width: 100%;
+      @font-face {
+        font-family: Poppins;
+        src: url('C:\Users\krzys\OneDrive\Pulpit\garage\san_diego\static\Poppins-Light.ttf');
       }
-      
-      {% comment %} td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      } {% endcomment %}
-      
-      </style>
+      @font-face {
+        font-family: Poppins;
+        src: url('C:\Users\krzys\OneDrive\Pulpit\garage\san_diego\static\Poppins-Bold.ttf');
+        font-weight: bold;
+      }
+      body {
+        font-family: Poppins;
+      }
+    </style>
   </head>
   <body>
     <div class='container'>
       <img src='{{profile.logo.path}}' style='text-align: center; width: 150; height: 150;'>
-
       <!-- INFO TABLE -->
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
@@ -72,12 +70,14 @@
           <tr>
             <td style="font-weight:300; font-size:13px;"  align="right">&nbsp;</td>
           </tr>
-          {% if car.client %}
+          {% if car.client == None or car.client == Brak %}
+          <tr>
+            <td style="font-weight:300; font-size:13px;"  align="right"></td>
+          </tr>
+          {% else %}
           <tr>
             <td style="font-weight:300; font-size:13px;"  align="right">{{car.client}}</td>
           </tr>
-          {% elif car.client == Brak %}
-          {% elif car.client == None %}
           {% endif %}
           <tr>
             <td style="font-weight:300; font-size:13px;" align="right">{{car.car_make}}</td>
@@ -126,6 +126,7 @@
     <tr>
 
       <!-- CARPARTS TABLE -->
+      {% if carparts %}
       <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td style="font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" width="5%" height="32" align="center">#</td>
@@ -147,8 +148,10 @@
           {% endfor %}
         </tr>
       </table></td>
+      {% endif %}
     </tr>
     </table>
-    <p align='center' style="font-weight:500; font-size:15px;">Razem: {% for total in total %}{{total.total}}{% endfor %}</p>
+    <p align='center' style="font-weight:500; font-size:15px;">Razem: {% if total %}{% for total in total %}{{total.total}}{% endfor %}{% else %}{%for sum in stpp%}{{sum.sum}}{%endfor%}{% endif %} zł.</p>
+  <img src="{{static_root}}/images/logo.png">
   </body>
 </html>

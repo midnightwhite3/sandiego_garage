@@ -29,8 +29,8 @@
                     <div class='form-group col-md-3 mb-3'>
                         {{ form.service_price }}
                     </div>
-                    <div class='form-group col-md-1 mb-3'>
-                        {{ form.DELETE }}
+                    <div class='form-group col-md-1'>
+                        {{ form.DELETE }} {{form.DELETE.label}}
                     </div>
                     <!-- <div class='form-group col-md-1 mb-3'>
                         <button type="button" class="btn btn-link text-danger delete-service"><i class='bx bx-minus'></i></button>
@@ -49,8 +49,8 @@
                     <div class='form-group col-md-3 mb-3'>
                         {{ form.empty_form.service_price }}
                     </div>
-                    <div class='form-group col-md-1 mb-3'>
-                        {{ form.empty_form.DELETE }}
+                    <div class='form-group col-md-1'>
+                        {{ form.empty_form.DELETE }} {{ form.empty_form.DELETE.label }}
                     </div>
                     <!-- <div class='form-group col-md-1 mb-3'>
                         <button type="button" class="btn btn-link text-danger delete-service"><i class='bx bx-minus'></i></button>
@@ -73,8 +73,8 @@
                         <div class='form-group col-md-3 mb-3 ml-auto'>
                             {{ form.part_price }}
                         </div>
-                        <div class='form-group col-md-1 mb-3'>
-                            {{ form.DELETE }}
+                        <div class='form-group col-md-1'>
+                            {{ form.DELETE }} {{ form.DELETE.label }}
                         </div>
                         <!-- <div class='form-group col-md-1 mb-3'>
                             <button type="button" class="btn btn-link text-danger delete-service"><i class='bx bx-minus'></i></button>
@@ -92,8 +92,8 @@
                 <div class='form-group col-md-3 mb-3 ml-auto'>
                     {{ formset.empty_form.part_price }}
                 </div>
-                <div class='form-group col-md-1 mb-3'>
-                    {{ formset.empty_form.DELETE }}
+                <div class='form-group col-md-1'>
+                    {{ formset.empty_form.DELETE }} {{ formset.empty_form.DELETE.label }}
                 </div>
                 <!-- <div class='form-group col-md-1 mb-3'>
                     <button type="button" class="btn btn-link text-danger delete-service"><i class='bx bx-minus'></i></button>

@@ -71,12 +71,14 @@ class CarPartForm(forms.ModelForm):
 ServiceFormSet = modelformset_factory(Service, form=ServiceForm, extra=0, fields=['service_name', 'service_price'], can_delete=True, widgets={
     'service_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Service name'}),
     'service_price': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Service price'}),
+    'DELETE': forms.CheckboxInput(attrs={'class': 'form-check-input', 'label': 'Delete'}),
 })
 
 
 CarPartFormSet = modelformset_factory(CarPart, form=CarPartForm, fields=['car_part', 'part_price'], can_delete=True, extra=0, widgets={
     'car_part': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Part'}),
     'part_price': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Price'}),
+    'DELETE': forms.CheckboxInput(attrs={'class': 'form-check'}),
 })
 
 

@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from secrets import *
+
+from garage.secrets import GARAGE_CLOUDINARY_API_KEY, GARAGE_CLOUDINARY_API_SECRET
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent
@@ -38,6 +41,8 @@ INSTALLED_APPS = [
     # third party apps
     'bootstrap4',
     'crispy_forms',
+    'cloudinary',
+    'cloudinary_storage',
     # 'html2pdf',
     # 'bootstrap5',
 
@@ -169,3 +174,12 @@ EMAIL_USE_TLS = True
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# CLOUDINARY SETTINGS
+
+CLOUDINARY_STORAGE ={
+    'CLOUD_NAME': 'hbuuhvhmy',
+    'API_KEY': GARAGE_CLOUDINARY_API_KEY,
+    'API_SECRET': GARAGE_CLOUDINARY_API_SECRET,
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

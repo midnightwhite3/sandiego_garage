@@ -439,7 +439,6 @@ class ServiceHistoryView(ListView):
     def get_context_data(self, **kwargs):
         context = super(ServiceHistoryView, self).get_context_data(**kwargs)
         car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'))
-        # services = self.get_queryset().annotate(total=Sum(F('carparts__part_price')) + F('service_price'))
         services = self.get_queryset()
         services_total_price_perday = self.get_queryset().filter().values('date_added').order_by(
             '-date_added').annotate(sum=Sum('service_price'))
@@ -485,8 +484,6 @@ def services_parts_delete(request, **kwargs):
     car = get_object_or_404(Car, uuid=kwargs.get('uuid'))
     services = Service.objects.filter(car=car, user=request.user, date_added=kwargs.get('date'))
     carparts = CarPart.objects.filter(car=car, user=request.user, pdate_added=kwargs.get('date'))
-    # services.delete()
-    # carparts.delete()
     context = {
         'car': car,
         'services': services,
@@ -536,10 +533,10 @@ def services_parts_delete(request, **kwargs):
 #         context['total'] = total
 #         return context
 
-from .converters import link_callback
 
 def generate_invoice_pdf(request, uuid, *args, **kwargs):
     template_path = 'san_diego/invoice.html'
+    date = kwargs.get('date')
     car = get_object_or_404(Car, uuid=uuid)
     profile = get_object_or_404(Profile, user=request.user)
     services = Service.objects.filter(car=car, user=request.user, date_added=kwargs.get('date'))
@@ -572,7 +569,7 @@ def generate_invoice_pdf(request, uuid, *args, **kwargs):
 
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'filename="{}.pdf"'.format(car)
+    response['Content-Disposition'] = 'filename="{}_{}.pdf"'.format(car, date)
     # response['Content-Disposition'] = 'attachment; filename="{}.pdf"'.format(car)
     # find the template and render it.
     template = get_template(template_path)

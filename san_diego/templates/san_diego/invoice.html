@@ -1,4 +1,4 @@
-{%load static%}
+{%load cloudinary%}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -26,7 +26,7 @@
   </head>
   <body>
     <div class='container'>
-      <img src='{{profile.logo.path}}' style='text-align: center; width: 150; height: 150;'>
+      <img src='{{profile.logo.url}}' style='text-align: center; width: 150; height: 150;'>
       <!-- INFO TABLE -->
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
@@ -100,13 +100,13 @@
         <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td style="font-weight:600; font-size:13px; border:1px solid #333" width="5%" height="32" align="center">#</td>
-            <td style="font-weight:600; font-size:13px; border:1px solid #333;" width="80%" align="center">Nazwa usługi</td>
+            <td style="font-weight:600; font-size:13px; border:1px solid #333;margin-left: 3px;" width="80%" align="left">Nazwa usługi</td>
             <td style="font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;" width="15%" align="center">Cena</td>
           </tr>
           {% for service in services %}
           <tr>
             <td style="font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" height="32" align="center">{{forloop.counter}}</td>
-            <td style="font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;" align="center">{{service.service_name}}</td>
+            <td style="font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;margin-left: 3px;" align="left">{{service.service_name}}</td>
             <td style="font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;" align="center">{{service.service_price}}</td>
           </tr>
           {% endfor %}
@@ -130,13 +130,13 @@
       <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td style="font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" width="5%" height="32" align="center">#</td>
-          <td style="font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;" width="80%" align="center">Nazwa części</td>
+          <td style="font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333; margin-left: 3px;" width="80%" align="left">Nazwa części</td>
           <td style="font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;" width="15%" align="center">Cena</td>
         </tr>
         {% for part in carparts %}
         <tr>
           <td style="font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" height="32" align="center">{{forloop.counter}}</td>
-          <td style="font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;" align="center">{{part.car_part}}</td>
+          <td style="font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;margin-left: 3px;" align="left">{{part.car_part}}</td>
           <td style="font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;" align="center">{{part.part_price}}</td>
         </tr>
         {% endfor %}

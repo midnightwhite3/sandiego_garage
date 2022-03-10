@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     # third party apps
     'bootstrap4',
     'crispy_forms',
+    'django.contrib.staticfiles',
     'cloudinary',
     'cloudinary_storage',
     # 'html2pdf',
@@ -48,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    # 'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [

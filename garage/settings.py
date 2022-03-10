@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'GARAGE_SECRET_KEY'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', 'sandiegogarage.herokuapp.com']
 
@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     # third party apps
     'bootstrap4',
     'crispy_forms',
+    # django static files need to be higher than cloudinary to properly collect static
+    # according to this https://github.com/tiagocordeiro/dj3-cloudinary-storage
     'django.contrib.staticfiles',
     'cloudinary',
     'cloudinary_storage',

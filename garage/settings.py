@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -21,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'GARAGE_SECRET_KEY'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', 'sandiegogarage.herokuapp.com']
 
@@ -39,8 +43,8 @@ INSTALLED_APPS = [
     # django static files need to be higher than cloudinary to properly collect static
     # according to this https://github.com/tiagocordeiro/dj3-cloudinary-storage
     'django.contrib.staticfiles',
-    'cloudinary',
     'cloudinary_storage',
+    'cloudinary',
     # 'html2pdf',
     # 'bootstrap5',
 
@@ -176,8 +180,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # CLOUDINARY SETTINGS
 
 CLOUDINARY_STORAGE ={
-    'CLOUD_NAME': 'hbuuhvhmy',
-    'API_KEY': '176371711349476',
-    'API_SECRET': os.environ.get('GC_API_SECRET'),
+    'CLOUD_NAME': env('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': env('CLOUDIANRY_API_KEY'),
+    'API_SECRET': env('CLOUDINARY_API_SECRET'),
+    'SECURE': True,
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

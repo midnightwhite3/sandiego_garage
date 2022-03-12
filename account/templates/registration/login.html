@@ -14,7 +14,22 @@
     <div class="fadeIn first mt-2">
       <img src="{% static 'images/sandiego.png' %}" id="icon" alt="User Icon" height='200' width='200' />
     </div>
-    
+    {% if messages %}
+      {% for message in messages %}
+        <!-- VALID -->
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+          <div class="alert alert-success mx-4 mt-2" role="'alert">
+            {{ message }}
+          </div>
+        {% endif %}
+        <!-- INVALID -->
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+          <div class="alert alert-danger mx-4 mt-2" role="alert">
+            {{ message }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
     {% if form.errors %}
       <div class="alert alert-danger mx-4 mt-2" role="alert">
         Username or password are incorrect.

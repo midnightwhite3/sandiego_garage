@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import edit_profile, register, register_complete, PasswordChangeCustomView, PasswordResetCustomView, PasswordResetConfirmCustomView
+from .views import edit_profile, register, register_complete, PasswordChangeCustomView, PasswordResetCustomView, PasswordResetConfirmCustomView, activate_account, confirm_mail_message
 
 urlpatterns = [
     #Login views
@@ -16,4 +16,6 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', PasswordResetConfirmCustomView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('edit_profile/', edit_profile, name='edit_profile'),
+    path('activate_account/<uidb64>/<token>', activate_account, name='activate_account'),
+    path('email_confirm_message/', confirm_mail_message, name='confirm_mail_message'),
 ]

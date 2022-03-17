@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
@@ -19,22 +20,22 @@
     <ul class="nav-list">
       <li>
           <i class='bx bx-search' ></i>
-         <input type="text" placeholder="Search...">
-         <span class="tooltip">Search</span>
+         <input type="text" placeholder="{% trans 'Search...' ">
+         <span class="tooltip">{% trans 'Search' %}</span>
       </li>
       <li>
         <a href="{% url 'car_library' %}">
           <i class='fas fa-car'></i>
-          <span class="links_name">Car library</span>
+          <span class="links_name">{% trans 'Car library' %}</span>
         </a>
-         <span class="tooltip">Car library</span>
+         <span class="tooltip">{% trans 'Car library' %}</span>
       </li>
       <li>
         <a href="{% url 'client_library' %}">
          <i class='far fa-address-book' ></i>
-         <span class="links_name">Clients</span>
+         <span class="links_name">{% trans 'Clients' %}</span>
        </a>
-       <span class="tooltip">Clients</span>
+       <span class="tooltip">{% trans 'Clients' %}</span>
      </li>
      <!-- <li>
        <a href="#">
@@ -46,9 +47,9 @@
      <li>
        <a href="#">
          <i class='bx bx-pie-chart-alt-2' ></i>
-         <span class="links_name">Analytics</span>
+         <span class="links_name">{% trans 'Analytics' %}</span>
        </a>
-       <span class="tooltip">Analytics</span>
+       <span class="tooltip">{% trans 'Analytics' %}</span>
      </li>
      <li>
        <a href="https://deler.pl">
@@ -74,16 +75,16 @@
      <li>
        <a href="{% url 'edit_profile' %}">
          <i class='bx bx-cog' ></i>
-         <span class="links_name">Profile</span>
+         <span class="links_name">{% trans 'Profile' %}</span>
        </a>
-       <span class="tooltip">Profile</span>
+       <span class="tooltip">{% trans 'Profile' %}</span>
      </li>
      <li>
       <a href="{% url 'car_add' %}">
         <i class='bx bx-plus-circle' ></i>
-        <span class="links_name">Add car</span>
+        <span class="links_name">{% trans 'Add car' %}</span>
       </a>
-      <span class="tooltip">Add car</span>
+      <span class="tooltip">{% trans 'Add car' %}</span>
     </li>
      <li class="profile">
          <div class="profile-details">

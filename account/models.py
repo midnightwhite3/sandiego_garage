@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 User._meta.get_field('email')._unique = True # This is for setting e-mail field of User model to unique
@@ -8,8 +9,8 @@ User._meta.get_field('email')._unique = True # This is for setting e-mail field 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     logo = models.ImageField(blank=True)
-    company_name = models.CharField(max_length=40, blank=True)
-    company_adress = models.CharField(max_length=60, blank=True)
+    company_name = models.CharField(_('Company name'),max_length=40, blank=True)
+    company_adress = models.CharField(_('Company adress'),max_length=60, blank=True)
     post_code_city = models.CharField(max_length=30, blank=True)
     phone_number = models.CharField(max_length=9, blank=True)
     nip = models.CharField(max_length=10, blank=True)

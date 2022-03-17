@@ -26,7 +26,7 @@
   </head>
   <body>
     <div class='container'>
-      <img src='{{profile.logo.url}}' style='text-align: center; width: 150; height: 150;'>
+
       <!-- INFO TABLE -->
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
@@ -152,5 +152,6 @@
     </tr>
     </table>
     <p align='center' style="font-weight:500; font-size:15px;">Razem: {% if total %}{% for total in total %}{{total.total}}{% endfor %}{% else %}{%for sum in stpp%}{{sum.sum}}{%endfor%}{% endif %} zł.</p>
+    <p align='right' style="font-weight:300; font-size:13px;margin-right:0.5cm;">{{ date|date:"d/m/Y" }}</p>
   </body>
 </html>

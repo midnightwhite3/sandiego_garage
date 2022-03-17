@@ -1,7 +1,8 @@
 {% extends 'san_diego/base.html' %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
-{% block title %}Add car{% endblock %}
+{% block title %}{% trans 'Add car' %}{% endblock %}
 
 {% block content %}
 <style>
@@ -10,7 +11,7 @@
     }
 </style>
 <div class='container'>
-    <h1 class='mt-4'>Add car</h1>
+    <h1 class='mt-4'>{% trans 'Add car' %}</h1>
     <form method='POST' action='' enctype='multipart/form-data' id='carForm' data-carmodels-url="{% url 'ajax_load_car_models' %}">
         <hr class='mt-0 mb-4'>
         {% csrf_token %}

@@ -1,17 +1,18 @@
 {% extends 'san_diego/base.html' %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
-{% block title %}Stwórz konto{% endblock %}
+{% block title %}{% trans 'Create an account' %}{% endblock %}
 
 {% block content %}
     <div class='container'>
-        <h1 class='mt-4'>Make an account</h1>
+        <h1 class='mt-4'>{% trans 'Create an account' %}</h1>
         <form action='' method='POST' id='registerForm' enctype='multipart/form-data'>
             <hr class='mt-0 mb-4'>
             {% csrf_token %}
             {{ user_form|crispy }}
-            <p>* - required field.</p>
-            <hr><button type='submit' class='btn btn-success mt-2 mb-2'>Create</button></hr>
+            <p>* - {% trans 'required field' %}.</p>
+            <hr><button type='submit' class='btn btn-success mt-2 mb-2'>{% trans 'Create' %}</button></hr>
         </form>
     </div>    
 {% endblock %}

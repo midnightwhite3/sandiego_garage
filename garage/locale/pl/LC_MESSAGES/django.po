@@ -1,0 +1,595 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-17 11:09+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: .\account\forms.py:10 .\account\templates\registration\login.html:54
+msgid "Password"
+msgstr "Hasło"
+
+#: .\account\forms.py:10 .\account\forms.py:33
+msgid "From 8 to 20 characters"
+msgstr "Od 8 do 20 znaków"
+
+#: .\account\forms.py:11
+msgid "Repeat password"
+msgstr "Powtórz hasło"
+
+#: .\account\forms.py:12 .\account\templates\registration\login.html:47
+msgid "Username"
+msgstr "Nazwa użytkownika"
+
+#: .\account\forms.py:12
+msgid "Maximum 15 characters"
+msgstr "Maksymalnie 15 znaków"
+
+#: .\account\forms.py:13
+msgid "Enter a valid e-mail"
+msgstr "Podaj właściwy e-mail."
+
+#: .\account\forms.py:27
+msgid "Passwords don't match."
+msgstr "Hasła nie są identyczne."
+
+#: .\account\forms.py:32
+msgid "Old_password"
+msgstr "Stare hasło"
+
+#: .\account\forms.py:33
+msgid "New Password"
+msgstr "Nowe hasło"
+
+#: .\account\forms.py:34 .\account\forms.py:56
+msgid "Confirm new password"
+msgstr "Powtórz hasło"
+
+#: .\account\forms.py:42
+msgid "New password can't be the same as the old one."
+msgstr "Nowe hasło nie może być takie same."
+
+#: .\account\forms.py:55
+msgid "New password"
+msgstr "Nowe hasło"
+
+#: .\account\forms.py:87
+msgid "Post code and City"
+msgstr "Kod pocztowy i miasto"
+
+#: .\account\forms.py:88 .\san_diego\models.py:26
+#: .\san_diego\templates\san_diego\client_detail.html:16
+msgid "Phone number"
+msgstr "Numer telefonu"
+
+#: .\account\models.py:12
+msgid "Company name"
+msgstr "Nazwa firmy"
+
+#: .\account\models.py:13
+msgid "Company adress"
+msgstr "Adres firmy"
+
+#: .\account\templates\edit_profile.html:6
+#: .\account\templates\edit_profile.html:11
+msgid "Edit profile"
+msgstr "Edytuj profil"
+
+#: .\account\templates\edit_profile.html:19
+msgid "Save changes"
+msgstr "Zapisz zmiany"
+
+#: .\account\templates\edit_profile.html:20
+#: .\account\templates\registration\password_change_form.html:9
+#: .\account\templates\registration\password_reset_confirm.html:14
+msgid "Change password"
+msgstr "Nowe hasło"
+
+#: .\account\templates\registration\confirm_mail.html:3
+#: .\account\templates\registration\password_reset_email.html:2
+msgid "Hi"
+msgstr "Witaj"
+
+#: .\account\templates\registration\confirm_mail.html:4
+msgid "In order to log in, you need to verify your account"
+msgstr "Aby się zalogować, musisz zweryfikować swoje konto"
+
+#: .\account\templates\registration\confirm_mail.html:5
+msgid "Please click on the link below to confirm your registration"
+msgstr "Klkinij w poniższy link, aby potwierdzić swoją rejestrację"
+
+#: .\account\templates\registration\confirm_mail_message.html:3
+#: .\account\templates\registration\password_reset_done.html:4
+msgid "E-mail sent"
+msgstr "Wysłano e-mail"
+
+#: .\account\templates\registration\confirm_mail_message.html:9
+#: .\account\templates\registration\password_reset_done.html:10
+msgid "We've sent you an e-mail"
+msgstr "Wysłaliśmy do Ciebie e-mail"
+
+#: .\account\templates\registration\confirm_mail_message.html:11
+msgid ""
+"In order to activate your account, we've sent you an e-mail with further "
+"instructions"
+msgstr ""
+"Aby aktywować swoje konto, postępuj zgodnie z instukcjami wysłanymi na e-mail"
+
+#: .\account\templates\registration\confirm_mail_message.html:12
+#: .\account\templates\registration\password_reset_done.html:13
+msgid ""
+"In case you didn't receive any e-mail, please make sure you've entered a "
+"valid e-mail"
+msgstr "Jeśli nie otrzymałeś maila, upewnij się, że podałeś właściwy e-mail"
+
+#: .\account\templates\registration\login.html:6
+#: .\san_diego\templates\san_diego\base.html:42
+msgid "Log in"
+msgstr "Zaloguj"
+
+#: .\account\templates\registration\login.html:23
+#: .\account\templates\registration\login.html:29
+#, python-format
+msgid "%(message)s"
+msgstr ""
+
+#: .\account\templates\registration\login.html:36
+msgid "Username or password are incorrect."
+msgstr "Nazwa użytkownika lub hasło są nieprawidłowe."
+
+#: .\account\templates\registration\login.html:37
+#: .\account\templates\registration\password_reset_confirm.html:19
+msgid "Try again"
+msgstr "Spróbuj ponownie"
+
+#: .\account\templates\registration\login.html:60
+#, fuzzy
+#| msgid "Log in"
+msgid "Log In"
+msgstr "Zaloguj"
+
+#: .\account\templates\registration\login.html:66
+msgid "Register"
+msgstr "Zarejestruj"
+
+#: .\account\templates\registration\login.html:67
+#: .\account\templates\registration\password_reset_form.html:9
+msgid "Forgot your password"
+msgstr "Zapomniałeś hasła"
+
+#: .\account\templates\registration\password_change_done.html:4
+msgid "Change done"
+msgstr "Zmiana zakończona"
+
+#: .\account\templates\registration\password_change_done.html:10
+msgid "You've changed your password successfully"
+msgstr "Pomyślnie zmieniłeś hasło"
+
+#: .\account\templates\registration\password_change_form.html:5
+msgid "Password change"
+msgstr "Zmiana hasła"
+
+#: .\account\templates\registration\password_change_form.html:13
+#: .\san_diego\templates\san_diego\car_edit.html:44
+#: .\san_diego\templates\san_diego\client_add.html:14
+#: .\san_diego\templates\san_diego\client_edit.html:14
+#: .\san_diego\templates\san_diego\service_add.html:108
+msgid "Save"
+msgstr "Zapisz"
+
+#: .\account\templates\registration\password_reset_complete.html:4
+#: .\account\templates\registration\register_complete.html:4
+msgid "Reset done"
+msgstr "Reset zakończony"
+
+#: .\account\templates\registration\password_reset_complete.html:10
+#: .\account\templates\registration\password_reset_confirm.html:5
+msgid "Password reset"
+msgstr "Zresetuj hasło"
+
+#: .\account\templates\registration\password_reset_complete.html:12
+msgid "Congratulations! You can now"
+msgstr "Gratulacje! Możesz się teraz"
+
+#: .\account\templates\registration\password_reset_complete.html:12
+#: .\account\templates\registration\register_complete.html:10
+msgid "log in"
+msgstr "zalogować"
+
+#: .\account\templates\registration\password_reset_complete.html:12
+msgid "with your new password"
+msgstr "z Twoim nowym hasłem"
+
+#: .\account\templates\registration\password_reset_confirm.html:10
+msgid "Reset your password"
+msgstr "Zresetuj hasło"
+
+#: .\account\templates\registration\password_reset_confirm.html:19
+msgid "Link is invalid or expired"
+msgstr "Link wygasł lub jest niewłaściwy"
+
+#: .\account\templates\registration\password_reset_done.html:12
+msgid ""
+"In order to reset your password, we've sent you an e-mail with further "
+"instructions"
+msgstr ""
+"Aby zresetować swoje hasło, postępuj zgodnie z instukcjami wysłanymi na e-"
+"mail"
+
+#: .\account\templates\registration\password_reset_email.html:3
+msgid "In order to reset your password, click the link below"
+msgstr "Aby zresetować swoje hasło kliknij w link poniżej"
+
+#: .\account\templates\registration\password_reset_email.html:5
+msgid "Your username associated with this e-mail"
+msgstr "Nazwa użytkownika powiązana z tym e-mailem"
+
+#: .\account\templates\registration\password_reset_form.html:11
+msgid "To reset your password, enter an e-mail you used for signing up"
+msgstr "Aby zresetować hasło, podaj e-mail użyty podczas rejestracji"
+
+#: .\account\templates\registration\password_reset_form.html:14
+msgid "Send"
+msgstr "Wyślij"
+
+#: .\account\templates\registration\register.html:5
+#: .\account\templates\registration\register.html:9
+msgid "Create an account"
+msgstr "Stwórz konto"
+
+#: .\account\templates\registration\register.html:14
+msgid "required field"
+msgstr "pole wymagane"
+
+#: .\account\templates\registration\register.html:15
+msgid "Create"
+msgstr "Stwórz"
+
+#: .\account\templates\registration\register_complete.html:10
+msgid "Congratulations, your account has been registered. You can now"
+msgstr "Gratulacje, Twoje konto zostało zarejestrowane. Możesz się teraz"
+
+#: .\account\views.py:31
+msgid "GarageApp, confirm your e-mail."
+msgstr "GarageApp, potwierdź e-mail."
+
+#: .\account\views.py:58
+msgid "Cogratulations! You activated your account and can log in now."
+msgstr "Gratulacje! Aktywowałeś swoje konto i możesz się teraz zalogować."
+
+#: .\account\views.py:61
+msgid "Token invalid or expired."
+msgstr "Link jest niewłaściwy lub wygasł."
+
+#: .\san_diego\forms.py:14
+msgid "Name, up to 40 chars."
+msgstr "Nazwa, maksymalnie 40 znaków."
+
+#: .\san_diego\forms.py:28 .\san_diego\templates\san_diego\car_detail.html:23
+msgid "Year"
+msgstr "Rok"
+
+#: .\san_diego\forms.py:30
+msgid "Engine capacity"
+msgstr "Pojemność silnika"
+
+#: .\san_diego\forms.py:31
+msgid "Enter VIN number"
+msgstr "Podaj numer VIN"
+
+#: .\san_diego\forms.py:32
+msgid "Additional informations"
+msgstr "Dodatkowe informacje"
+
+#: .\san_diego\forms.py:61 .\san_diego\forms.py:73
+msgid "Service name"
+msgstr "Serwis"
+
+#: .\san_diego\forms.py:62 .\san_diego\forms.py:74 .\san_diego\models.py:73
+msgid "Service price"
+msgstr "Cena serwisu"
+
+#: .\san_diego\forms.py:75 .\san_diego\templates\san_diego\car_delete.html:18
+#: .\san_diego\templates\san_diego\car_library.html:55
+#: .\san_diego\templates\san_diego\client_delete.html:18
+#: .\san_diego\templates\san_diego\client_library.html:46
+#: .\san_diego\templates\san_diego\service_delete.html:36
+msgid "Delete"
+msgstr "Usuń"
+
+#: .\san_diego\forms.py:80 .\san_diego\models.py:88
+#: .\san_diego\templates\san_diego\service_history.html:76
+msgid "Part"
+msgstr "Część"
+
+#: .\san_diego\forms.py:81 .\san_diego\models.py:89
+msgid "Part price"
+msgstr "Cena części"
+
+#: .\san_diego\models.py:10 .\san_diego\templates\san_diego\car_detail.html:19
+#: .\san_diego\templates\san_diego\car_library.html:29
+msgid "Make"
+msgstr "Marka"
+
+#: .\san_diego\models.py:25
+#: .\san_diego\templates\san_diego\client_library.html:30
+msgid "Name"
+msgstr "Nazwa"
+
+#: .\san_diego\models.py:41
+msgid "Gasoline"
+msgstr "Benzyna"
+
+#: .\san_diego\models.py:43
+msgid "Electric"
+msgstr "Elektryczny"
+
+#: .\san_diego\models.py:44
+msgid "Hybrid"
+msgstr "Hybrydowy"
+
+#: .\san_diego\models.py:52
+msgid "Enter a valid year."
+msgstr "Podaj właściwy rok."
+
+#: .\san_diego\models.py:53 .\san_diego\templates\san_diego\car_detail.html:25
+msgid "Fuel type"
+msgstr "Rodzaj paliwa"
+
+#: .\san_diego\models.py:54 .\san_diego\templates\san_diego\car_detail.html:27
+msgid "Engine"
+msgstr "Silnik"
+
+#: .\san_diego\models.py:56
+msgid "This VIN number is too short."
+msgstr "Ten numer VIN jest zbyt krótki."
+
+#: .\san_diego\models.py:57 .\san_diego\templates\san_diego\car_detail.html:34
+msgid "Remarks"
+msgstr "Uwagi"
+
+#: .\san_diego\models.py:72
+#: .\san_diego\templates\san_diego\service_history.html:45
+msgid "Service"
+msgstr "Serwis"
+
+#: .\san_diego\templates\san_diego\base.html:44
+msgid "You're logged in as"
+msgstr "Jesteś zalogowany jako"
+
+#: .\san_diego\templates\san_diego\base.html:45
+#, fuzzy
+#| msgid "Log in"
+msgid "Log out"
+msgstr "Wyloguj"
+
+#: .\san_diego\templates\san_diego\base.html:97
+msgid "Opening hours"
+msgstr "Godziny otwarcia"
+
+#: .\san_diego\templates\san_diego\car_add.html:5
+#: .\san_diego\templates\san_diego\car_add.html:14
+#: .\san_diego\templates\san_diego\sidebar.html:85
+#: .\san_diego\templates\san_diego\sidebar.html:87
+msgid "Add car"
+msgstr "Dodaj samochód"
+
+#: .\san_diego\templates\san_diego\car_delete.html:4
+#, fuzzy
+#| msgid "Delete"
+msgid "Car delete"
+msgstr "Usuń"
+
+#: .\san_diego\templates\san_diego\car_delete.html:10
+#, fuzzy
+#| msgid "Delete"
+msgid "Delete Car"
+msgstr "Usuń"
+
+#: .\san_diego\templates\san_diego\car_delete.html:16
+#: .\san_diego\templates\san_diego\client_delete.html:16
+msgid "Are you sure you want to delete"
+msgstr "Czy na pewno chcesz usunąć"
+
+#: .\san_diego\templates\san_diego\car_detail.html:4
+msgid "Car detail"
+msgstr "Szczegóły"
+
+#: .\san_diego\templates\san_diego\car_detail.html:11
+msgid "Car Details"
+msgstr "Szczegóły"
+
+#: .\san_diego\templates\san_diego\car_detail.html:12
+#: .\san_diego\templates\san_diego\car_library.html:53
+msgid "View service history"
+msgstr "Historia serwisów"
+
+#: .\san_diego\templates\san_diego\car_detail.html:17
+#: .\san_diego\templates\san_diego\car_library.html:28
+#: .\san_diego\templates\san_diego\client_detail.html:14
+msgid "Client"
+msgstr "Klient"
+
+#: .\san_diego\templates\san_diego\car_edit.html:5
+#: .\san_diego\templates\san_diego\car_edit.html:14
+#, fuzzy
+#| msgid "Edit profile"
+msgid "Edit car"
+msgstr "Edytuj"
+
+#: .\san_diego\templates\san_diego\car_library.html:5
+#: .\san_diego\templates\san_diego\client_detail.html:18
+msgid "Cars"
+msgstr "Samochody"
+
+#: .\san_diego\templates\san_diego\car_library.html:31
+msgid "Added"
+msgstr "Dodano"
+
+#: .\san_diego\templates\san_diego\car_library.html:32
+msgid "Updated"
+msgstr "Zaktualizowano"
+
+#: .\san_diego\templates\san_diego\car_library.html:33
+msgid "Add Car"
+msgstr "Dodaj samochód"
+
+#: .\san_diego\templates\san_diego\car_library.html:51
+#: .\san_diego\templates\san_diego\client_library.html:45
+msgid "Edit"
+msgstr "Edytuj"
+
+#: .\san_diego\templates\san_diego\car_library.html:52
+#: .\san_diego\templates\san_diego\service_add.html:5
+#: .\san_diego\templates\san_diego\service_add.html:111
+#: .\san_diego\templates\san_diego\service_history.html:17
+msgid "Add service"
+msgstr "Dodaj serwis"
+
+#: .\san_diego\templates\san_diego\client_add.html:5
+#: .\san_diego\templates\san_diego\client_add.html:9
+#: .\san_diego\templates\san_diego\client_library.html:32
+msgid "Add client"
+msgstr "Dodaj klienta"
+
+#: .\san_diego\templates\san_diego\client_delete.html:4
+msgid "Client delete"
+msgstr "Usuń"
+
+#: .\san_diego\templates\san_diego\client_delete.html:10
+#: .\san_diego\templates\san_diego\service_delete.html:11
+#, fuzzy
+#| msgid "Delete"
+msgid "Delete Client"
+msgstr "Usuń"
+
+#: .\san_diego\templates\san_diego\client_delete.html:16
+msgid "and all cars related to this client"
+msgstr "i wszystkie powiązane samochody"
+
+#: .\san_diego\templates\san_diego\client_detail.html:4
+msgid "Client details"
+msgstr "Szczegóły"
+
+#: .\san_diego\templates\san_diego\client_detail.html:10
+msgid "Client Details"
+msgstr "Szczegóły"
+
+#: .\san_diego\templates\san_diego\client_detail.html:23
+msgid "No cars related to this client"
+msgstr "Brak samochodów powiązanych z tym klientem"
+
+#: .\san_diego\templates\san_diego\client_edit.html:5
+msgid "Client edit"
+msgstr "Edycja"
+
+#: .\san_diego\templates\san_diego\client_edit.html:9
+msgid "Client Edit"
+msgstr "Edycja"
+
+#: .\san_diego\templates\san_diego\client_library.html:5
+#: .\san_diego\templates\san_diego\sidebar.html:36
+#: .\san_diego\templates\san_diego\sidebar.html:38
+msgid "Clients"
+msgstr "Klienci"
+
+#: .\san_diego\templates\san_diego\client_library.html:31
+msgid "Phone"
+msgstr "Telefon"
+
+#: .\san_diego\templates\san_diego\pagination.html:8
+#: .\san_diego\templates\san_diego\pagination.html:15
+msgid "Previous"
+msgstr "Poprzednia"
+
+#: .\san_diego\templates\san_diego\pagination.html:40
+#: .\san_diego\templates\san_diego\pagination.html:47
+msgid "Next"
+msgstr "Następna"
+
+#: .\san_diego\templates\san_diego\service_add.html:112
+msgid "Add part"
+msgstr "Dodaj część"
+
+#: .\san_diego\templates\san_diego\service_delete.html:5
+msgid "Delete services"
+msgstr "Usuń serwisy"
+
+#: .\san_diego\templates\san_diego\service_delete.html:17
+msgid "Are you sure you want to delete these items"
+msgstr "Czy na pewno chcesz to usunąć"
+
+#: .\san_diego\templates\san_diego\service_delete.html:19
+msgid "Services"
+msgstr "Serwisy"
+
+#: .\san_diego\templates\san_diego\service_delete.html:27
+msgid "Parts"
+msgstr "Części"
+
+#: .\san_diego\templates\san_diego\service_delete.html:35
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: .\san_diego\templates\san_diego\service_history.html:4
+msgid "Service history"
+msgstr "Historia serwisów"
+
+#: .\san_diego\templates\san_diego\service_history.html:48
+#: .\san_diego\templates\san_diego\service_history.html:79
+msgid "Price"
+msgstr "Cena"
+
+#: .\san_diego\templates\san_diego\service_history.html:68
+msgid "Services total"
+msgstr "Serwisy razem"
+
+#: .\san_diego\templates\san_diego\service_history.html:103
+msgid "Parts total"
+msgstr "Części razem"
+
+#: .\san_diego\templates\san_diego\service_history.html:110
+msgid "Total price"
+msgstr "Cena całkowita"
+
+#: .\san_diego\templates\san_diego\sidebar.html:24
+msgid "Search"
+msgstr "Szukaj"
+
+#: .\san_diego\templates\san_diego\sidebar.html:29
+#: .\san_diego\templates\san_diego\sidebar.html:31
+msgid "Car library"
+msgstr "Biblioteka samochodów"
+
+#: .\san_diego\templates\san_diego\sidebar.html:50
+#: .\san_diego\templates\san_diego\sidebar.html:52
+msgid "Analytics"
+msgstr "Analityka"
+
+#: .\san_diego\templates\san_diego\sidebar.html:78
+#: .\san_diego\templates\san_diego\sidebar.html:80
+msgid "Profile"
+msgstr "Profil"
+
+#: .\garage\settings.py:129
+msgid "polish"
+msgstr "polski"
+
+#: .\garage\settings.py:130
+msgid "english"
+msgstr "angielski"

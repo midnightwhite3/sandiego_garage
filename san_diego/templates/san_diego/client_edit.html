@@ -1,16 +1,17 @@
 {% extends 'san_diego/base.html' %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
-{% block title %}Client edit{% endblock %}
+{% block title %}{% trans 'Client edit' %}{% endblock %}
 
 {% block content %}
 <div class='container'>
-    <h1 class='mt-4'>Client Edit</h1>
+    <h1 class='mt-4'>{% trans 'Client Edit' %}</h1>
     <form action='' method='POST' id='clientForm'>
         <hr class='mt-0 mb-4'>
         {% csrf_token %}
         {{ form|crispy }}
-        <hr><button type='submit' class='btn btn-success mt-2 mb-2'>Save</button></hr>
+        <hr><button type='submit' class='btn btn-success mt-2 mb-2'>{% trans 'Save' %}</button></hr>
     </form>
 </div> 
 {% endblock %}

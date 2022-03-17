@@ -1,8 +1,9 @@
 {% extends 'san_diego/base.html'%}
+{% load i18n %}
 {% load static %}
 
 
-{% block title %}Log in{% endblock %}
+{% block title %}{% trans 'Log in' %}{% endblock %}
 
 {% block content %}   
 <link href="{% static 'loginn.css' %}" rel="stylesheet">
@@ -19,21 +20,21 @@
         <!-- VALID -->
         {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
           <div class="alert alert-success mx-4 mt-2" role="'alert">
-            {{ message }}
+            {% blocktrans %}{{ message }}{% endblocktrans %}
           </div>
         {% endif %}
         <!-- INVALID -->
         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
           <div class="alert alert-danger mx-4 mt-2" role="alert">
-            {{ message }}
+            {% blocktrans %}{{ message }}{% endblocktrans %}
           </div>
         {% endif %}
       {% endfor %}
     {% endif %}
     {% if form.errors %}
       <div class="alert alert-danger mx-4 mt-2" role="alert">
-        Username or password are incorrect.
-        Try again.
+        {% trans 'Username or password are incorrect.' %}
+        {% trans 'Try again'%}.
       </div>
     {% endif %}
 
@@ -43,25 +44,25 @@
         {% csrf_token %}
         <div class="fadeIn second">
           <div class='form-group mt-2'>
-            <input type='text' class='form-control' name='username' placeholder='Username' />
+            <input type='text' class='form-control' name='username' placeholder="{% trans 'Username' %}" />
           </div>
         </div>
             {% comment %} <input type="text" id="login" class="fadeIn second" name="login" placeholder="Username"> {% endcomment %}
         <div class="fadeIn third">
           <div class='form-group'>
-            <input type='password' class='form-control' name='password' placeholder='Password' />
+            <input type='password' class='form-control' name='password' placeholder="{% trans 'Password' %}" />
           </div>
         </div>
             {% comment %} <input type="password" id="password" class="fadeIn third" name="login" placeholder="Password"> {% endcomment %}
         <input type='hidden' name='next' value="{{ next }}" />
-        <input type="submit" class="fadeIn fourth" value="Log In">
+        <input type="submit" class="fadeIn fourth" value="{% trans 'Log In' %}">
       </form>
     </div>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="{% url 'register' %}">Register</a>
-      <p><a class="underlineHover" href="{% url 'password_reset' %}">Forgot your password?</a></p>
+      <a class="underlineHover" href="{% url 'register' %}">{% trans 'Register' %}</a>
+      <p><a class="underlineHover" href="{% url 'password_reset' %}">{% trans 'Forgot your password' %}?</a></p>
     </div>
   </div>
 </div>

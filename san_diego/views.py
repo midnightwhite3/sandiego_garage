@@ -565,6 +565,7 @@ def generate_invoice_pdf(request, uuid, *args, **kwargs):
         'ptpp': parts_total_price_perday,
         'total': total,
         'static_root': static_root,
+        'date': date,
     }
 
     # Create a Django response object, and specify content_type as pdf

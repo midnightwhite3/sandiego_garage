@@ -1,15 +1,15 @@
 {% extends 'san_diego/base.html' %}
-
-{% block title %}E-mail sent{% endblock %}
+{% load i18n %}
+{% block title %}{% trans 'E-mail sent' %}{% endblock %}
 
 {% block content %}
     <div class='mt-4'>    
     <div class='container'>
         <div class='alert alert-success' role='alert'>
-            <h4 class='alert-heading'>We've sent you an e-mail</h4>
+            <h4 class='alert-heading'>{% trans "We've sent you an e-mail" %}</h4>
             <hr class='mt-0'>
-            <p>In order to activate your account, we've sent you an e-mail with further instructions.</p>
-            <p>In case you didn't receive any e-mail, please make sure you've entered a valid e-mail.</p>
+            <p>{% trans "In order to activate your account, we've sent you an e-mail with further instructions" %}.</p>
+            <p>{% trans "In case you didn't receive any e-mail, please make sure you've entered a valid e-mail" %}.</p>
         </div>
     </div>
     </div>

@@ -1,21 +1,22 @@
 {% extends 'san_diego/base.html' %}
+{% load i18n %}
 {% load static %}
 
-{% block title %}Delete services{% endblock %}
+{% block title %}{% trans 'Delete services' %}{% endblock %}
 
 {% block content %}
   <div class='container'>
     <div class="card mt-4">
       <div class="card-header">
-        <h5 class="card-title">Delete Client</h5>
+        <h5 class="card-title">{% trans 'Delete Client' %}</h5>
       </div>
       <div class="card-body">
         <form method="post" action=''>
           {% csrf_token %}
           <div class="alert alert-warning" role="alert">
-            Are you sure you want to delete these items?
+            {% trans 'Are you sure you want to delete these items' %}?
             {% if services %}
-              <h5 class='mt-2'>Services:</h5>
+              <h5 class='mt-2'>{% trans 'Services' %}:</h5>
               {% for service in services %}
                 <ul>
                   <li class='ml-4'><strong>{{service}}</strong></li>
@@ -23,7 +24,7 @@
               {% endfor %}
             {% endif %}
             {% if carparts %}
-            <h5 class='mt-2'>Parts:</h5>
+            <h5 class='mt-2'>{% trans 'Parts' %}:</h5>
               {% for carpart in carparts %}
                 <ul>
                   <li class='ml-4'><strong>{{carpart.car_part}}</strong></li>
@@ -31,8 +32,8 @@
               {% endfor %}
             {% endif %}
           </div>
-          <a href="{% url 'service_history' uuid=car.uuid %}">Cancel</a>
-          <button type="submit" class="btn btn-danger ml-2">Delete</button>
+          <a href="{% url 'service_history' uuid=car.uuid %}">{% trans 'Cancel' %}</a>
+          <button type="submit" class="btn btn-danger ml-2">{% trans 'Delete' %}</button>
         </form>
       </div>
     </div>

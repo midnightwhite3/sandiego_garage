@@ -1,7 +1,8 @@
 {% extends 'san_diego/base.html' %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
-{% block title %}Edit car{% endblock %}
+{% block title %}{% trans 'Edit car' %}{% endblock %}
 
 {% block content %}
 <style>
@@ -10,7 +11,7 @@
     }
 </style>
 <div class='container'>
-    <h1 class='mt-4'>Edit car</h1>
+    <h1 class='mt-4'>{% trans 'Edit car' %}</h1>
     <form method='POST' action='' enctype='multipart/form-data' id='carForm' data-carmodels-url="{% url 'ajax_load_car_models' %}">
         <hr class='mt-0 mb-4'>
         {% csrf_token %}
@@ -40,7 +41,7 @@
         </div>
         {{ form.vin|as_crispy_field }}
         {{ form.extra_info|as_crispy_field }}
-        <hr><button type='submit' class='btn btn-success mt-2 mb-2'>Save</button></hr>
+        <hr><button type='submit' class='btn btn-success mt-2 mb-2'>{% trans 'Save' %}</button></hr>
     </form> 
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

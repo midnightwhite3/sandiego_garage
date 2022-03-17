@@ -1,6 +1,7 @@
+{% load i18n %}
 {% autoescape off %}
-Hi {{ new_user.username }},
-In order to log in, you need to verify your account.
-Please click on the link below to confirm your registration,
+{% trans 'Hi' %} {{ new_user.username }},
+{% trans 'In order to log in, you need to verify your account' %}.
+{% trans 'Please click on the link below to confirm your registration' %},
 http://{{ domain }}{% url 'activate_account' uidb64=uid token=token %}
 {% endautoescape %}

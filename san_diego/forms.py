@@ -2,6 +2,7 @@ from sys import prefix
 from django import forms
 from django.forms.models import inlineformset_factory, modelformset_factory
 from .models import Car, CarMake, CarPart, Service, Client, CarModel
+from django.utils.translation import gettext_lazy as _
 
 
 class ClientForm(forms.ModelForm):
@@ -10,7 +11,7 @@ class ClientForm(forms.ModelForm):
         exclude = ('user', 'uuid')
 
         widgets = {
-            'client_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name, up to 40 chars.'}),
+            'client_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Name, up to 40 chars.')}),
             'phone_number': forms.NumberInput(attrs={'class': 'form-control'})
         }
 
@@ -24,11 +25,11 @@ class CarForm(forms.ModelForm):
             'client': forms.Select(attrs={'class': 'form-control'}),
             'car_make': forms.Select(attrs={'class': 'form-control'}),
             'car_model': forms.Select(attrs={'class': 'form-control'}),
-            'year': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Year'}),
+            'year': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': _('Year')}),
             'fuel_type': forms.Select(attrs={'class': 'form-control'}),
-            'engine': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Engine capacity'}),
-            'vin': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter VIN number'}),
-            'extra_info': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Additional informations'}),
+            'engine': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Engine capacity')}),
+            'vin': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Enter VIN number')}),
+            'extra_info': forms.Textarea(attrs={'class': 'form-control', 'placeholder': _('Additional informations')}),
         }
         
     def __init__(self, *args, **kwargs):
@@ -57,8 +58,8 @@ class ServiceForm(forms.ModelForm):
         model = Service
         fields = ['service_name', 'service_price']
         widgets = {
-            'service_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Service name'}),
-            'service_price': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Service price'}),
+            'service_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Service name')}),
+            'service_price': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Service price')}),
         }
 
 
@@ -69,15 +70,15 @@ class CarPartForm(forms.ModelForm):
 
 
 ServiceFormSet = modelformset_factory(Service, form=ServiceForm, extra=0, fields=['service_name', 'service_price'], can_delete=True, widgets={
-    'service_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Service name'}),
-    'service_price': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Service price'}),
-    'DELETE': forms.CheckboxInput(attrs={'class': 'form-check-input', 'label': 'Delete'}),
+    'service_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Service name')}),
+    'service_price': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Service price')}),
+    'DELETE': forms.CheckboxInput(attrs={'class': 'form-check-input', 'label': _('Delete')}),
 })
 
 
 CarPartFormSet = modelformset_factory(CarPart, form=CarPartForm, fields=['car_part', 'part_price'], can_delete=True, extra=0, widgets={
-    'car_part': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Part'}),
-    'part_price': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Price'}),
+    'car_part': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Part')}),
+    'part_price': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Part price')}),
     'DELETE': forms.CheckboxInput(attrs={'class': 'form-check'}),
 })
 

@@ -1,36 +1,37 @@
 {% extends 'san_diego/base.html' %}
+{% load i18n %}
 
-{% block title %}Car detail{% endblock %}
+{% block title %}{% trans 'Car detail' %}{% endblock %}
 
 {% block content %}
     <div class='container'>
         <div class='mt-4 card'>
             <div class='card-header'>
                 <div class='row'>
-                    <h5 class='card-title'>Car Details #{{ car.uuid }}</h5>
-                    <a href="{% url 'service_history' car.uuid %}" role='button' class='text-info ml-auto mr-2'>View service history</a>
+                    <h5 class='card-title'>{% trans 'Car Details' %} #{{ car.uuid }}</h5>
+                    <a href="{% url 'service_history' car.uuid %}" role='button' class='text-info ml-auto mr-2'>{% trans 'View service history' %}</a>
                 </div>
             </div>
             <div class='card-body'>
                 <dl class='row'>
-                    <dt class="col-sm-3">Client</dt>
+                    <dt class="col-sm-3">{% trans 'Client' %}</dt>
                     <dd class="col-sm-9">{{ car.client }}</dd>
-                    <dt class="col-sm-3">Make</dt>
+                    <dt class="col-sm-3">{% trans 'Make' %}</dt>
                     <dd class="col-sm-9">{{ car.car_make }}</dd>
                     <dt class="col-sm-3">Model</dt>
                     <dd class="col-sm-9">{{ car.car_model }}</dd>
-                    <dt class="col-sm-3">Year</dt>
+                    <dt class="col-sm-3">{% trans 'Year' %}</dt>
                     <dd class="col-sm-9">{{ car.year }}</dd>
-                    <dt class="col-sm-3">Fuel type</dt>
+                    <dt class="col-sm-3">{% trans 'Fuel type' %}</dt>
                     <dd class="col-sm-9">{{ car.fuel_type }}</dd>
-                    <dt class="col-sm-3">Engine</dt>
+                    <dt class="col-sm-3">{% trans 'Engine' %}</dt>
                     <dd class="col-sm-9">{{ car.engine }}</dd>
                     {% if car.vin %}
                         <dt class="col-sm-3">VIN</dt>
                         <dd class="col-sm-9">{{ car.vin }}</dd>
                     {% endif %}
                     {% if car.extra_info %}
-                        <dt class="col-sm-3">Remarks</dt>
+                        <dt class="col-sm-3">{% trans 'Remarks' %}</dt>
                         <dd class="col-sm-9">{{ car.extra_info }}</dd>
                     {% endif %}
                 </dl>

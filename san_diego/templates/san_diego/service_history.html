@@ -1,6 +1,7 @@
 {% extends 'san_diego/base.html' %}
+{% load i18n %}
 
-{% block title %}Service history{% endblock %}
+{% block title %}{% trans 'Service history' %}{% endblock %}
 
 {% block content %}
 <div class='container'>
@@ -13,7 +14,7 @@
         {% include 'san_diego/pagination.html' %}
     {% endif %}
     </div>
-    <a href="{% url 'service_add' uuid=car.uuid %}" role='button' class='text-info mt-2 mr-4 mb-2'><i class="fas fa-plus"></i>Add service</a>
+    <a href="{% url 'service_add' uuid=car.uuid %}" role='button' class='text-info mt-2 mr-4 mb-2'><i class="fas fa-plus"></i>{% trans 'Add service' %}</a>
   </div>
   <style>
     hr.dashed {
@@ -40,10 +41,10 @@
         <div class="card-body">
           <div class='row'>
             <div class="col-sm-6">
-              <h5>Service</h5>
+              <h5>{% trans 'Service' %}</h5>
             </div>
             <div class="col-sm-6 border-left">
-              <h5>Price</h5>
+              <h5>{% trans 'Price' %}</h5>
             </div>
           </div>
           <hr>
@@ -63,7 +64,7 @@
                 <div class="col-sm-4">
                 </div>
                 <div class="col-sm-8">
-                  <h6 class='ml-4 pl-4 mb-2'>&ensp; Services total: &ensp; &ensp;{{ total.sum }}</h6>
+                  <h6 class='ml-4 pl-4 mb-2'>&ensp; {% trans 'Services total' %}: &ensp; &ensp;{{ total.sum }}</h6>
                 </div>
               </div>
             {% endif %}
@@ -71,10 +72,10 @@
           <hr class='dashed mb-2'>
           <div class='row mt-4'>
             <div class="col-sm-6">
-              <h5>Part</h5>
+              <h5>{% trans 'Part' %}</h5>
             </div>
             <div class="col-sm-6 border-left">
-              <h5>Price</h5>
+              <h5>{% trans 'Price' %}</h5>
             </div>
           </div>
           <hr>
@@ -98,14 +99,14 @@
                 <div class="col-sm-4">
                 </div>
                 <div class="col-sm-8">
-                  <h6 class='ml-4 pl-4 mb-2'>&ensp; Parts total: &ensp; &ensp; {{ total.sum }}</h6>
+                  <h6 class='ml-4 pl-4 mb-2'>&ensp; {% trans 'Parts total' %}: &ensp; &ensp; {{ total.sum }}</h6>
                 </div>
               </div>
             {% endif %}
           {% endfor %}
           {% for total in total %}
             {% if total.date == date_added.grouper %}
-                <h5 class='ml-4 pl-4 mb-2 mt-4'>Total price: &ensp; {{ total.total }}</h5>
+                <h5 class='ml-4 pl-4 mb-2 mt-4'>{% trans 'Total price' %}: &ensp; {{ total.total }}</h5>
             {% endif %}
           {% endfor %}
           <div class='row justify-content-end'>

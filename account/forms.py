@@ -3,13 +3,14 @@ from django.contrib.auth.models import User
 from django.forms.widgets import EmailInput, PasswordInput, TextInput
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm, SetPasswordForm
 from .models import Profile
+from django.utils.translation import gettext_lazy as _
 
 
 class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(max_length=20, min_length=8, label='Password', widget=PasswordInput(attrs={'class': 'form-control', 'placeholder': 'From 8 to 20 characters'}))
-    password2 = forms.CharField(label='Repeat password', widget=PasswordInput(attrs={'class': 'form-control'}))
-    username = forms.CharField(max_length=15, label='Username', widget=TextInput(attrs={'class': 'form-control', 'placeholder': 'Maximum 15 characters'}))
-    email = forms.EmailField(label='Email', widget=EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter a valid e-mail'}))
+    password = forms.CharField(max_length=20, min_length=8, label=_('Password'), widget=PasswordInput(attrs={'class': 'form-control', 'placeholder': _('From 8 to 20 characters')}))
+    password2 = forms.CharField(label=_('Repeat password'), widget=PasswordInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(max_length=15, label=_('Username'), widget=TextInput(attrs={'class': 'form-control', 'placeholder': _('Maximum 15 characters')}))
+    email = forms.EmailField(label='Email', widget=EmailInput(attrs={'class': 'form-control', 'placeholder': _('Enter a valid e-mail')}))
 
     class Meta:
         model = User
@@ -23,14 +24,14 @@ class UserRegistrationForm(forms.ModelForm):
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
-            raise forms.ValidationError("Passwords don't match.")
+            raise forms.ValidationError(_("Passwords don't match."))
         return cd['password2']
 
 
 class PasswordChangeCustomForm(PasswordChangeForm):
-    old_password = forms.CharField(min_length=8, max_length=20, widget=PasswordInput(attrs={'class': 'form-control'}))
-    new_password1 = forms.CharField(label='New Password',min_length=8, max_length=20, widget=PasswordInput(attrs={'class': 'form-control', 'placeholder': 'From 8 to 20 characters'}))
-    new_password2 = forms.CharField(label='Confirm new password',min_length=8, max_length=20, widget=PasswordInput(attrs={'class': 'form-control'}))
+    old_password = forms.CharField(label=_('Old_password'),min_length=8, max_length=20, widget=PasswordInput(attrs={'class': 'form-control'}))
+    new_password1 = forms.CharField(label=_('New Password'),min_length=8, max_length=20, widget=PasswordInput(attrs={'class': 'form-control', 'placeholder': _('From 8 to 20 characters')}))
+    new_password2 = forms.CharField(label=_('Confirm new password'),min_length=8, max_length=20, widget=PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
@@ -38,7 +39,7 @@ class PasswordChangeCustomForm(PasswordChangeForm):
 
     def clean(self): # clean + field name, displays ValidationError as field error, standalone clean - non.field_error
         if self.cleaned_data.get('new_password1') == self.cleaned_data.get('old_password'):
-           raise forms.ValidationError("New password can't be the same as the old one.")
+           raise forms.ValidationError(_("New password can't be the same as the old one."))
         return self.cleaned_data
     
 
@@ -51,8 +52,8 @@ class PasswordResetCustomForm(PasswordResetForm):
 
 
 class PasswordResetConfirmCustomForm(SetPasswordForm):
-    new_password1 = forms.CharField(label="New password", widget=PasswordInput(attrs={'class': 'form-control'}))
-    new_password2 = forms.CharField(label='Confirm new password', widget=PasswordInput(attrs={'class': 'form-control'}))
+    new_password1 = forms.CharField(label=_("New password"), widget=PasswordInput(attrs={'class': 'form-control'}))
+    new_password2 = forms.CharField(label=_('Confirm new password'), widget=PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
@@ -83,5 +84,6 @@ class ProfileEditForm(forms.ModelForm):
             'nip': forms.NumberInput(attrs={'class': 'form-control'}),
         }
         labels = {
-            'post_code_city': 'Post code and City'
+            'post_code_city': _('Post code and City'),
+            'phone_number': _('Phone number'),
         }

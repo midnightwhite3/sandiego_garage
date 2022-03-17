@@ -1,7 +1,8 @@
 {% extends 'san_diego/base.html' %}
+{% load i18n %}
 {% load static %}
 
-{% block title %}Clients{% endblock %}
+{% block title %}{% trans 'Clients' %}{% endblock %}
 
 
 {% block content %}
@@ -26,9 +27,9 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col"><a href="{% url 'client_add' %}" role='button' class='text-success'><i class="fas fa-user-plus"></i> Add client</a></th>
+                    <th scope="col">{% trans 'Name' %}</th>
+                    <th scope="col">{% trans 'Phone' %}</th>
+                    <th scope="col"><a href="{% url 'client_add' %}" role='button' class='text-success'><i class="fas fa-user-plus"></i> {% trans 'Add client' %}</a></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -41,8 +42,8 @@
                             {% else %}
                                 <td>-</td>
                             {% endif %}
-                            <td><a class="btn btn-primary" href="{{ client.uuid }}/edit" role="button">Edit</a>
-                            <a class="btn btn-danger" href="{{ client.uuid }}/delete" role='button'>Delete</a></td>
+                            <td><a class="btn btn-primary" href="{{ client.uuid }}/edit" role="button">{% trans 'Edit' %}</a>
+                            <a class="btn btn-danger" href="{{ client.uuid }}/delete" role='button'>{% trans 'Delete' %}</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

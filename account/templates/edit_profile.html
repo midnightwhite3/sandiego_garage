@@ -10,6 +10,16 @@
     <div class='container'>
         <h1 class='mt-4'>{% trans 'Edit profile' %}</h1>
         <hr class='mt-0'>
+        {% if messages %}
+            {% for message in messages %}
+                <!-- VALID -->
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                  <div class="alert alert-success mx-4 mt-2" role="'alert">
+                    {% blocktrans %}{{ message }}{% endblocktrans %}
+                  </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
         <form action='.' method='POST' enctype='multipart/form-data'>
             {{ user_form|crispy }}
             {{ profile_form|crispy }}

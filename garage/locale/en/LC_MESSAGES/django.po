@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-17 11:09+0100\n"
+"POT-Creation-Date: 2022-03-21 16:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,11 +88,18 @@ msgstr ""
 msgid "Edit profile"
 msgstr ""
 
-#: .\account\templates\edit_profile.html:19
+#: .\account\templates\edit_profile.html:18
+#: .\account\templates\registration\login.html:23
+#: .\account\templates\registration\login.html:29
+#, python-format
+msgid "%(message)s"
+msgstr ""
+
+#: .\account\templates\edit_profile.html:29
 msgid "Save changes"
 msgstr ""
 
-#: .\account\templates\edit_profile.html:20
+#: .\account\templates\edit_profile.html:30
 #: .\account\templates\registration\password_change_form.html:9
 #: .\account\templates\registration\password_reset_confirm.html:14
 msgid "Change password"
@@ -137,12 +144,6 @@ msgstr ""
 #: .\account\templates\registration\login.html:6
 #: .\san_diego\templates\san_diego\base.html:42
 msgid "Log in"
-msgstr ""
-
-#: .\account\templates\registration\login.html:23
-#: .\account\templates\registration\login.html:29
-#, python-format
-msgid "%(message)s"
 msgstr ""
 
 #: .\account\templates\registration\login.html:36
@@ -232,6 +233,10 @@ msgstr ""
 msgid "Your username associated with this e-mail"
 msgstr ""
 
+#: .\account\templates\registration\password_reset_form.html:5
+msgid "Reset password"
+msgstr ""
+
 #: .\account\templates\registration\password_reset_form.html:11
 msgid "To reset your password, enter an e-mail you used for signing up"
 msgstr ""
@@ -269,11 +274,16 @@ msgstr ""
 msgid "Token invalid or expired."
 msgstr ""
 
+#: .\account\views.py:78
+msgid "Changes saved successfully."
+msgstr ""
+
 #: .\san_diego\forms.py:14
 msgid "Name, up to 40 chars."
 msgstr ""
 
-#: .\san_diego\forms.py:28 .\san_diego\templates\san_diego\car_detail.html:23
+#: .\san_diego\forms.py:28 .\san_diego\models.py:51
+#: .\san_diego\templates\san_diego\car_detail.html:23
 msgid "Year"
 msgstr ""
 
@@ -336,6 +346,20 @@ msgstr ""
 msgid "Hybrid"
 msgstr ""
 
+#: .\san_diego\models.py:48 .\san_diego\templates\san_diego\car_detail.html:17
+#: .\san_diego\templates\san_diego\car_library.html:28
+#: .\san_diego\templates\san_diego\client_detail.html:14
+msgid "Client"
+msgstr ""
+
+#: .\san_diego\models.py:49
+msgid "Car make"
+msgstr ""
+
+#: .\san_diego\models.py:50
+msgid "Car model"
+msgstr ""
+
 #: .\san_diego\models.py:52
 msgid "Enter a valid year."
 msgstr ""
@@ -369,7 +393,11 @@ msgstr ""
 msgid "Log out"
 msgstr ""
 
-#: .\san_diego\templates\san_diego\base.html:97
+#: .\san_diego\templates\san_diego\base.html:93
+msgid "Language"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\base.html:132
 msgid "Opening hours"
 msgstr ""
 
@@ -406,12 +434,6 @@ msgstr ""
 msgid "View service history"
 msgstr ""
 
-#: .\san_diego\templates\san_diego\car_detail.html:17
-#: .\san_diego\templates\san_diego\car_library.html:28
-#: .\san_diego\templates\san_diego\client_detail.html:14
-msgid "Client"
-msgstr ""
-
 #: .\san_diego\templates\san_diego\car_edit.html:5
 #: .\san_diego\templates\san_diego\car_edit.html:14
 msgid "Edit car"
@@ -432,6 +454,10 @@ msgstr ""
 
 #: .\san_diego\templates\san_diego\car_library.html:33
 msgid "Add Car"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\car_library.html:48
+msgid "Action"
 msgstr ""
 
 #: .\san_diego\templates\san_diego\car_library.html:51
@@ -550,6 +576,19 @@ msgstr ""
 msgid "Total price"
 msgstr ""
 
+#: .\san_diego\templates\san_diego\service_history.html:126
+msgid "To take full adventage of print function, please head to your"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\service_history.html:126
+msgid "profile"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\service_history.html:127
+msgid "and fill up informations about your company"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\sidebar.html:23
 #: .\san_diego\templates\san_diego\sidebar.html:24
 msgid "Search"
 msgstr ""
@@ -571,8 +610,8 @@ msgstr ""
 
 #: .\garage\settings.py:129
 msgid "polish"
-msgstr ""
+msgstr "Polish"
 
 #: .\garage\settings.py:130
 msgid "english"
-msgstr ""
+msgstr "English"

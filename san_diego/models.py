@@ -45,10 +45,10 @@ class Car(models.Model):
         ('PB+LPG', 'PB+LPG')
     )
     
-    client = models.ForeignKey(Client,on_delete=models.CASCADE)
-    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
-    car_model = models.ForeignKey(CarModel, on_delete=models.CASCADE)
-    year = models.IntegerField(default=None, null=True, blank=True, validators=[
+    client = models.ForeignKey(Client,on_delete=models.CASCADE, verbose_name=_('Client'))
+    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE, verbose_name=_('Car make'))
+    car_model = models.ForeignKey(CarModel, on_delete=models.CASCADE, verbose_name=_('Car model'))
+    year = models.IntegerField(_('Year'),default=None, null=True, blank=True, validators=[
         MinValueValidator(1950, _("Enter a valid year.")), MaxValueValidator(2050, "Enter a valid year.")])
     fuel_type = models.CharField(_('Fuel type'),max_length=15, choices=FUEL, default=None, null=True, blank=True)
     engine = models.CharField(_('Engine'),null=True, blank=True, max_length=15)

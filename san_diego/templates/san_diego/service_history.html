@@ -121,5 +121,9 @@
   <!-- MARGIN BOTTOM BELOW EVERY ACCORDION ITEM -->
   <div class='mb-1'></div>
   {% endfor %}
+  {% if services and carparts %}
+    <p class="font-italic mt-2">{% trans 'To take full adventage of print function, please head to your' %} <a href="{% url 'edit_profile' %}">{% trans 'profile' %}</a>
+    {% trans 'and fill up informations about your company' %}.</p>
+  {% endif %}
 </div>
 {% endblock %}

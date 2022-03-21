@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     
@@ -44,6 +44,8 @@
               <div class='ml-auto'>{% trans "You're logged in as" %} {{user}}.</div>
               <a class="btn btn-primary ml-2" href="{% url 'logout' %}" role="button">{% trans 'Log out' %}</a>
             {% endif %}
+            </ul>
+          </div>
         </div>
       </div>
       </nav>
@@ -61,6 +63,39 @@
         <!-----   Main content end   ----->
       </div>
     </header>
+    <!--LANGUAGE TOGGLE SWITCH YET TO BE APPLIED-->
+    <!--<div class="custom-control custom-switch fixed-bottom d-flex justify-content-end m-3">
+      <span style="margin-right:43px;">ENG</span>
+      <input type="checkbox" class="custom-control-input" id="customSwitch1">
+      <label class="custom-control-label" for="customSwitch1">PL</label>
+    </div>-->
+
+    <!--- LANGUAGE BUTTON --->
+    <div class="fixed-bottom d-flex justify-content-end m-3">
+      {% get_current_language as LANGUAGE_CODE %}
+      {% get_available_languages as LANGUAGES %}
+      {% get_language_info_list for LANGUAGES as languages %}
+      <div class="languages">
+        <div class="btn-group">
+          <div class="btn-group dropup" role="group">
+            <button type="button" class="btn btn-sm btn-info dropdown-toggle dropdown-toggle-split" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+              <span class="sr-only">Toggle Dropleft</span>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              {% for language in languages %}
+              <a class="dropdown-item" href="/{{ language.code }}/{{ request.get_full_path|slice:"4:" }}" {% if language.code == LANGUAGE_CODE %} class="selected"{% endif %}>
+                {{ language.name }}
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+          <button type="button" class="btn btn-sm btn-info disabled" disabled>
+            {% trans 'Language' %}: {{ LANGUAGE_CODE }}
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-----  Footer  ----->
     {% if not user.is_authenticated %}
     <footer id="footer" class="text-white text-center" style="background-color: #211e30;">

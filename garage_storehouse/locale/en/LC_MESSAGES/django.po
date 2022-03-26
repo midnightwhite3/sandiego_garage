@@ -1,0 +1,75 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-26 10:42+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\garage_storehouse\models.py:10
+#: .\garage_storehouse\templates\garage_storehouse\storehouse.html:14
+msgid "Name"
+msgstr ""
+
+#: .\garage_storehouse\models.py:11
+msgid "ID number"
+msgstr ""
+
+#: .\garage_storehouse\models.py:12
+msgid "Car make"
+msgstr ""
+
+#: .\garage_storehouse\models.py:13
+msgid "Car model"
+msgstr ""
+
+#: .\garage_storehouse\models.py:14
+#: .\garage_storehouse\templates\garage_storehouse\storehouse.html:18
+msgid "Quantity"
+msgstr ""
+
+#: .\garage_storehouse\templates\garage_storehouse\add_part.html:5
+#: .\garage_storehouse\templates\garage_storehouse\add_part.html:9
+#: .\garage_storehouse\templates\garage_storehouse\storehouse.html:19
+msgid "Add part"
+msgstr ""
+
+#: .\garage_storehouse\templates\garage_storehouse\add_part.html:16
+msgid "Save"
+msgstr ""
+
+#: .\garage_storehouse\templates\garage_storehouse\add_part.html:17
+msgid "Save and add another"
+msgstr ""
+
+#: .\garage_storehouse\templates\garage_storehouse\delete_part.html:4
+#: .\garage_storehouse\templates\garage_storehouse\delete_part.html:10
+msgid "Delete part"
+msgstr ""
+
+#: .\garage_storehouse\templates\garage_storehouse\delete_part.html:16
+msgid "Are you sure you want to delete"
+msgstr ""
+
+#: .\garage_storehouse\templates\garage_storehouse\delete_part.html:18
+msgid "Delete"
+msgstr ""
+
+#: .\garage_storehouse\templates\garage_storehouse\storehouse.html:4
+msgid "Storehouse"
+msgstr ""
+
+#: .\garage_storehouse\templates\garage_storehouse\storehouse.html:16
+msgid "Make"
+msgstr ""

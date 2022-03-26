@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     # my apps
     'san_diego.apps.SanDiegoConfig',
     'account.apps.AccountConfig',
+    'garage_storehouse.apps.GarageStorehouseConfig',
     
     # third party apps
     'bootstrap4',

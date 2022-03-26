@@ -1,0 +1,43 @@
+{% extends 'san_diego/base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% trans 'Add part' %}{% endblock %}
+
+{% block content %}
+<div class='container'>
+  <h1 class='mt-4'>{% trans 'Add part' %}</h1>
+  <form action='' method='POST' id='carForm' data-carmodels-url="{% url 'ajax_load_car_models' %}">
+      <hr class='mt-2'>
+      {% csrf_token %}
+      {{ form|crispy }}
+      <hr class='mt-2'>
+      <div class="row">
+        <button type='submit' class='btn btn-success mt-1 ml-3'>{% trans 'Save' %}</button>
+        <button type='submit' name='another' class='btn btn-outline-success mt-1 ml-2'>{% trans 'Save and add another' %}</button>
+      </div>
+  </form>
+</div>
+
+<script>
+  // <!-- Change car models depending on car make selected -->
+  $("#id_car_make").change(function () {
+      var url = $("#carForm").attr("data-carmodels-url");  
+      var carMakeId = $(this).val(); 
+      console.log(url)
+      console.log(carMakeId)
+
+      $.ajax({ 
+          url: url,
+          data: {
+              'car_make': carMakeId
+          },
+          success: function (data) {
+              $("#id_car_model").html(data);
+          }
+      });
+
+  });
+</script>
+
+{% endblock %}

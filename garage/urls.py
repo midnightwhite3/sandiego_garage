@@ -23,6 +23,7 @@ urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('', include('san_diego.urls')),
     path('', include('account.urls')),
+    path('', include('garage_storehouse.urls')),
 )
  
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

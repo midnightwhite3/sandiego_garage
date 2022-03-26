@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-21 16:52+0100\n"
+"POT-Creation-Date: 2022-03-26 10:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -313,9 +313,9 @@ msgid "Service price"
 msgstr "Cena usługi"
 
 #: .\san_diego\forms.py:75 .\san_diego\templates\san_diego\car_delete.html:18
-#: .\san_diego\templates\san_diego\car_library.html:55
+#: .\san_diego\templates\san_diego\car_library.html:42
 #: .\san_diego\templates\san_diego\client_delete.html:18
-#: .\san_diego\templates\san_diego\client_library.html:46
+#: .\san_diego\templates\san_diego\client_library.html:33
 #: .\san_diego\templates\san_diego\service_delete.html:36
 msgid "Delete"
 msgstr "Usuń"
@@ -330,12 +330,12 @@ msgid "Part price"
 msgstr "Cena części"
 
 #: .\san_diego\models.py:10 .\san_diego\templates\san_diego\car_detail.html:19
-#: .\san_diego\templates\san_diego\car_library.html:29
+#: .\san_diego\templates\san_diego\car_library.html:16
 msgid "Make"
 msgstr "Marka"
 
 #: .\san_diego\models.py:25
-#: .\san_diego\templates\san_diego\client_library.html:30
+#: .\san_diego\templates\san_diego\client_library.html:17
 msgid "Name"
 msgstr "Nazwa"
 
@@ -352,7 +352,7 @@ msgid "Hybrid"
 msgstr "Hybrydowy"
 
 #: .\san_diego\models.py:48 .\san_diego\templates\san_diego\car_detail.html:17
-#: .\san_diego\templates\san_diego\car_library.html:28
+#: .\san_diego\templates\san_diego\car_library.html:15
 #: .\san_diego\templates\san_diego\client_detail.html:14
 msgid "Client"
 msgstr "Klient"
@@ -435,7 +435,7 @@ msgid "Car Details"
 msgstr "Szczegóły"
 
 #: .\san_diego\templates\san_diego\car_detail.html:12
-#: .\san_diego\templates\san_diego\car_library.html:53
+#: .\san_diego\templates\san_diego\car_library.html:40
 msgid "View service history"
 msgstr "Historia usług"
 
@@ -449,28 +449,28 @@ msgstr "Edytuj"
 msgid "Cars"
 msgstr "Samochody"
 
-#: .\san_diego\templates\san_diego\car_library.html:31
+#: .\san_diego\templates\san_diego\car_library.html:18
 msgid "Added"
 msgstr "Dodano"
 
-#: .\san_diego\templates\san_diego\car_library.html:32
+#: .\san_diego\templates\san_diego\car_library.html:19
 msgid "Updated"
 msgstr "Zaktualizowano"
 
-#: .\san_diego\templates\san_diego\car_library.html:33
+#: .\san_diego\templates\san_diego\car_library.html:20
 msgid "Add Car"
 msgstr "Dodaj samochód"
 
-#: .\san_diego\templates\san_diego\car_library.html:48
+#: .\san_diego\templates\san_diego\car_library.html:35
 msgid "Action"
 msgstr "Akcja"
 
-#: .\san_diego\templates\san_diego\car_library.html:51
-#: .\san_diego\templates\san_diego\client_library.html:45
+#: .\san_diego\templates\san_diego\car_library.html:38
+#: .\san_diego\templates\san_diego\client_library.html:32
 msgid "Edit"
 msgstr "Edytuj"
 
-#: .\san_diego\templates\san_diego\car_library.html:52
+#: .\san_diego\templates\san_diego\car_library.html:39
 #: .\san_diego\templates\san_diego\service_add.html:5
 #: .\san_diego\templates\san_diego\service_add.html:111
 #: .\san_diego\templates\san_diego\service_history.html:17
@@ -479,7 +479,7 @@ msgstr "Dodaj usługę"
 
 #: .\san_diego\templates\san_diego\client_add.html:5
 #: .\san_diego\templates\san_diego\client_add.html:9
-#: .\san_diego\templates\san_diego\client_library.html:32
+#: .\san_diego\templates\san_diego\client_library.html:19
 msgid "Add client"
 msgstr "Dodaj klienta"
 
@@ -522,7 +522,7 @@ msgstr "Edycja"
 msgid "Clients"
 msgstr "Klienci"
 
-#: .\san_diego\templates\san_diego\client_library.html:31
+#: .\san_diego\templates\san_diego\client_library.html:18
 msgid "Phone"
 msgstr "Telefon"
 
@@ -535,6 +535,12 @@ msgstr "Poprzednia"
 #: .\san_diego\templates\san_diego\pagination.html:47
 msgid "Next"
 msgstr "Następna"
+
+#: .\san_diego\templates\san_diego\pagination_search.html:12
+#: .\san_diego\templates\san_diego\sidebar.html:23
+#: .\san_diego\templates\san_diego\sidebar.html:24
+msgid "Search"
+msgstr "Szukaj"
 
 #: .\san_diego\templates\san_diego\service_add.html:112
 msgid "Add part"
@@ -593,15 +599,15 @@ msgstr "profilu"
 msgid "and fill up informations about your company"
 msgstr "i uzupełnij informacje o Twojej firmie"
 
-#: .\san_diego\templates\san_diego\sidebar.html:23
-#: .\san_diego\templates\san_diego\sidebar.html:24
-msgid "Search"
-msgstr "Szukaj"
-
 #: .\san_diego\templates\san_diego\sidebar.html:29
 #: .\san_diego\templates\san_diego\sidebar.html:31
 msgid "Car library"
 msgstr "Biblioteka samochodów"
+
+#: .\san_diego\templates\san_diego\sidebar.html:43
+#: .\san_diego\templates\san_diego\sidebar.html:45
+msgid "Storehouse"
+msgstr ""
 
 #: .\san_diego\templates\san_diego\sidebar.html:50
 #: .\san_diego\templates\san_diego\sidebar.html:52
@@ -613,10 +619,10 @@ msgstr "Analityka"
 msgid "Profile"
 msgstr "Profil"
 
-#: .\garage\settings.py:129
+#: .\garage\settings.py:130
 msgid "polish"
 msgstr "Polski"
 
-#: .\garage\settings.py:130
+#: .\garage\settings.py:131
 msgid "english"
 msgstr "Angielski"

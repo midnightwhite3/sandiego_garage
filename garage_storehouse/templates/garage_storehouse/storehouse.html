@@ -1,0 +1,38 @@
+{% extends 'san_diego/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Storehouse' %}{% endblock title %}
+
+{% block content %}
+  <div class='container'>
+    {% include 'san_diego/pagination_search.html' %}
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">{% trans 'Name' %}</th>
+            <th scope="col">ID</th>
+            <th scope="col">{% trans 'Make' %}</th>
+            <th scope="col">Model</th>
+            <th scope="col">{% trans 'Quantity' %}</th>
+            <th scope="col"><a href="{% url 'storehouse_add_part' %}" role='button' class='text-success'><i class="fas fa-plus"></i> {% trans 'Add part' %}</a></th>
+          </tr>
+        </thead>
+        {% for part in storehouse_parts %}
+          <tbody>
+            <tr>
+              <td scope="row">{{ forloop.counter }}</td>
+              <td scope="col">{{ part.part_name }}</td>
+              <td scope="col">{{ part.part_id_number }}</td>
+              <td scope="col">{{ part.car_make }}</td>
+              <td scope="col">{{ part.car_model }}</td>
+              <td scope="col">{{ part.quantity }}</td>
+              <td><a class="btn btn-primary" href="{{ part.id }}/edit_part" role="button"><i class='fas fa-edit'></i></a>
+                <a class="btn btn-danger" href="{{part.id}}/delete_part" role="button"><i class='fas fa-trash'></i></a></td>
+            </tr>
+          </tbody>
+        {% endfor %}
+      </table>
+  </div>
+{% endblock %}

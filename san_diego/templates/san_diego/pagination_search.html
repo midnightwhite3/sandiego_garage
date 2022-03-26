@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<div class='row justify-content-end'>
+    <div class='col-4 mt-4 mb-3'>
+        {% if is_paginated %}
+            {% include "san_diego/pagination.html" %}
+        {% endif %}
+    </div>
+    <div class='col-4 mt-4 mb-4'>
+        <form method='GET'>
+            <div class="input-group">
+                <input type="text" name='q' class="form-control" placeholder="{% trans 'Search' %}" aria-label="Search" value='{{ request.GET.q }}'>
+            </div>
+        </form>
+    </div>
+</div>

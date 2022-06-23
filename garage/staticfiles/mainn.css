@@ -4,11 +4,18 @@
 
 body {
     color: #5a5a5a;
-
-    min-height: 100vh;
+    min-height: auto;
     display: flex;
     flex-direction: column;
+    padding-bottom: 0cm;
+    margin-bottom: 0cm;
   }
+
+header{
+  min-height: auto;
+  max-height: auto;
+  margin-bottom: 0;
+}
 
 footer {
     bottom: 0;
@@ -16,12 +23,13 @@ footer {
     margin-top: auto;
     z-index: 600;
   }
+
   /* CUSTOMIZE THE CAROUSEL
   -------------------------------------------------- */
   
   /* Carousel base class */
   .carousel {
-    margin-bottom: 4rem;
+    margin-bottom: 0;
   }
   /* Since positioning the image, we need to help out the caption */
   .carousel-caption {
@@ -67,7 +75,7 @@ hr.dashed {
   ------------------------- */
   
   .featurette-divider {
-    margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+    padding: 5rem 0; /* Space out the Bootstrap <hr> more */
   }
   
   /* Thin out the marketing headings */

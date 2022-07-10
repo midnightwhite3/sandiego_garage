@@ -1,5 +1,4 @@
-from sys import prefix
-from tkinter import Widget
+
 from django import forms
 from django.forms.models import inlineformset_factory, modelformset_factory
 from .models import Car, CarMake, CarPart, Service, Client, CarModel

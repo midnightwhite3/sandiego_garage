@@ -12,7 +12,8 @@
 </style>
 <div class='container'>
     <h1 class='mt-4'>{% trans 'Add car' %}</h1>
-    <form method='POST' action='' enctype='multipart/form-data' id='carForm' data-carmodels-url="{% url 'ajax_load_car_models' %}">
+    <form method='POST' action='' enctype='multipart/form-data' id='carForm' data-carmodels-url="{% url 'ajax_load_car_models' %}"
+    style="padding-bottom: 2cm">
         <hr class='mt-0 mb-4'>
         {% csrf_token %}
         {{ form.non_field_errors }}
@@ -41,7 +42,7 @@
         </div>
         {{ form.vin|as_crispy_field }}
         {{ form.extra_info|as_crispy_field }}
-        <hr><button type='submit' class='btn btn-success mt-2 mb-2'>Save</button>
+        <hr><button type='submit' class='btn btn-success mt-2'>Save</button>
     </form> 
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

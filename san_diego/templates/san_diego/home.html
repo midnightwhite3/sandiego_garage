@@ -5,70 +5,101 @@
 {% block title %}San Diego{% endblock %}
 
 {% block content %}
+{% include 'san_diego/messages.html' %}
   <body>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class='my-image' style='' src="{% static 'images/carousel1.jpg' %}" alt="">
+        <div class="bg-image" style="display: flex; position: relative; align-items: center; justify-content: center;">
+          <img src="{% static 'images/san_diego.png' %}" alt="Responsive image" class='w-100'>
+          {% comment %} <div class='mask' style="background-color: rgba(0, 0, 0, 0.6)"> {% endcomment %}
+            {% comment %} <div class='d-flex justify-content-center'>
+              <img src="{% static 'images/repairing-service.png' %}"  style='padding-top: 1.7cm; width: auto; height: 170px'/>
+            </div> {% endcomment %}
+          </div>
         </div>
-    </div>
     <section>
     <!-- Marketing messaging and featurettes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
-      <div class="container marketing" style="maring-bottom: 0">
+    <div data-spy="scroll" data-target="#navbar" data-offset="0">
+      <div class="container marketing">
         <!-- Three columns of text below the carousel -->
-      <div class="row pt-4">
-        <div class="col-lg-4">
-          <img class="rounded-circle" src="{% static 'images/header1.png' %}" alt="Generic placeholder image" width="140" height="140">
-          <h2>{% trans 'Naprawa' %}</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="rounded-circle" src="{% static 'images/header2.png' %}" alt="Generic placeholder image" width="140" height="140">
-          <h2>{% trans 'Klimatyzacja' %}</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="rounded-circle" src="{% static 'images/header3.png' %}" alt="Generic placeholder image" width="140" height="140">
-          <h2>{% trans 'Diagnostyka' %}</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
-      <!-- START THE FEATURETTES -->
-      <hr style='color: white'>
-        <div class="row featurette">
-          <div class="col-md-7">
-            <h2 class="featurette-heading">{% trans 'Wyceń naprawę' %}<p><span>{% trans 'Twojego auta' %}</span></p></h2>
-            <p class="lead">{% trans 'Nie trać czasu i energii jeżdżąc do kilku warsztatów po wyceny' %}! {% trans 'Dzięki temu formularzowi przygotuję dla Ciebie wycenę naprawy Twojego pojazdu, a wszystko to bez wychodzenia z domu' %}. 
-              {% trans 'Oszacuję dla Ciebie, ile będzie kosztować naprawa' %}.
-              {% trans 'Ile kosztuje ta wycena? Nic, bo jest całkowicie darmowa i niezobowiązująca' %}!</p>
-            <p class=""><b>{% trans 'Krok 1: Wypełnij formularz' %}</b> – {% trans 'Opowiedz mi o swoim pojeździe (marka, model, rok, itp.) i napisz jakiego rodzaju naprawy potrzebujesz' %}. 
-              {% trans 'Im bardziej drobiazgowo to zrobisz, tym łatwiej będzie mi dokonać prawidłowej wyceny naprawy' %}.</p>
-            <p class=''><b>{% trans 'Krok 2: Kliknij “Wyślij”' %}</b> – {% trans 'W ten sposób twoja wiadomość zostanie dostarczona' %}. 
-              {% trans 'Odpowiem możliwie szybko, ile będzie kosztować naprawa' %}.</p>
+        <div class="row pt-4">
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="{% static 'images/air-conditioning.jpg' %}" alt="Generic placeholder image" width="180" height="180">
+            <h3>{% trans 'Naprawa' %}</h3>
+            <p class='text-muted' style='white-space: pre-line'><i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Przeglądy okresowo-eksploatacyjne' %}</h6>
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Układ hamulcowy' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Układ napędowy' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Układ wydechowy' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Układ kierowniczy' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Układ elektryczny' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Zawieszenie' %}</p>
           </div>
-          <div class="col-md-5">
-            {% block style_for_contact %}<link href="{% static 'contact_form.css' %}" rel="stylesheet">{% endblock style_for_contact %}
-              <div class="contact-form" style='margin-top: 4.5cm'>
-                <div class="form-field">
-                  <label class='label' for="email">{% trans 'Email address' %}</label>
-                  <input type="email" class="text-input" id="email" placeholder="">
-                </div>
-                <div class="form-field mt-2">
-                  <label class='label' for="exampleFormControlTextarea1">{% trans 'Message' %}</label>
-                  <textarea class="textarea-input" id="exampleFormControlTextarea1" rows="7" placeholder=''></textarea>
-                </div>
-                <div class="form-field">
-                  <button class="submit-btn mt-2" type="submit" name="">{% trans 'Send' %}</button>
-                </div>
-              </div>
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="{% static 'images/car-diagnose.jpg' %}" alt="Generic placeholder image" width="180" height="180">
+            <h2>{% trans 'Diagnostyka' %}</h2>
+            <p class='text-muted'>{% trans 'Diagnostyka komputerowa to jedna z podstawowych metody weryfikacji' %}
+              {% trans 'potencjalnych awarii usterek w pojeździe.' %}
+              {% trans 'Umożliwa szybkie wykrycie nieprawidłowości' %}
+              {% trans 'związanych z wieloma układami i podzespołami.' %}
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="{% static 'images/car-repair.jpg' %}" alt="Generic placeholder image" width="180" height="180">
+            <h3>{% trans 'Klimatyzacja' %}</h3>
+            <p class='text-muted' style='white-space: pre-line'><i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Sprawdzanie szczelności' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Naprawa układu' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Nabijanie klimatyzacji' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Odgrzybianie' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Ozonowanie' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Wymiana filtra kabinowego' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Kompleksowe sprawdzanie podzespołów funkcjonalnych' %}</p>
           </div>
         </div>
-        <hr>
+      </div>
+      <!-- START THE FEATURETTES -->
+      <div id="quotation" class='container-fluid px-0 mx-0'>
+        <div class='bg-image'>
+          <img src="{% static 'images/black_pattern.png' %}" style='height: 100px; object-fit: cover; width: 100%'/>
+          <div class='mask' style="background-color: rgba(0, 0, 0, 0.1)"></div>
+        </div>
+      </div>
+      <div class='container-fluid' style='background-color: #D8D8D8'>
+        <div class='container marketing'>
+          <div class="row featurette">
+            <div class="col-md-7">
+              <h2 class="featurette-heading pt-4 mt-0">{% trans 'Wyceń naprawę' %}<p><span>{% trans 'Twojego auta' %}</span></p></h2>
+              <p class="lead">{% trans 'Nie trać czasu i energii jeżdżąc do kilku warsztatów po wyceny' %}! {% trans 'Dzięki temu formularzowi przygotuję dla Ciebie wycenę naprawy Twojego pojazdu, a wszystko to bez wychodzenia z domu' %}. 
+                {% trans 'Oszacuję dla Ciebie, ile będzie kosztować naprawa' %}.
+                {% trans 'Ile kosztuje ta wycena? Nic, bo jest całkowicie darmowa i niezobowiązująca' %}!</p>
+              <p class=""><b>{% trans 'Krok 1: Wypełnij formularz' %}</b> – {% trans 'Opowiedz mi o swoim pojeździe (marka, model, rok, itp.) i napisz jakiego rodzaju naprawy potrzebujesz' %}. 
+                {% trans 'Im bardziej drobiazgowo to zrobisz, tym łatwiej będzie mi dokonać prawidłowej wyceny naprawy' %}.</p>
+              <p class=''><b>{% trans 'Krok 2: Kliknij “Wyślij”' %}</b> – {% trans 'W ten sposób twoja wiadomość zostanie dostarczona' %}. 
+                {% trans 'Odpowiem możliwie szybko, ile będzie kosztować naprawa' %}.</p>
+            </div>
+            <div class="col-md-5">
+              {% block style_for_contact %}<link href="{% static 'contact_formm.css' %}" rel="stylesheet">{% endblock style_for_contact %}
+              <form method='POST' action="{% url 'home' %}">
+                {% csrf_token %}
+                {{form.non_field_errors}}
+                <div class="contact-form pt-4">
+                  <div class="form-field">
+                    <label class='label' for="{{ form.client_email.id_for_label }}">{% trans 'Email address' %}</label>
+                    {{ form.client_email }}
+                  </div>
+                  <div class="form-field mt-2">
+                    <label class='label' for="contact_message">{% trans 'Message' %}</label>
+                    {{ form.contact_message }}
+                  </div>
+                  <div class="form-field">
+                    <button class="submit-btn mt-2" type="submit" name="">{% trans 'Send' %}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='app' class='container marketing'>
         <div class="row featurette">
           <div class="col-md-7 order-md-2">
             <h2 class="featurette-heading">{% trans 'Jesteś mechanikiem?' %} <span class="text-muted">{% trans 'Sprawdź aplikację.' %}</span></h2>
@@ -82,30 +113,29 @@
               </div>
           </div>
           <div class="col-md-5 order-md-1">
-            <div style='padding-top: 1cm'>
-              <span style='white-space: pre-line'><b>1. Zarządzanie klientami</b>
-                -dodawanie nowych klientów
-                -edycja danych klientów
-                -historia zleceń klientów
-                -zadania do wykonania dla każdego klienta
+            <div style='padding-top: 0.5cm; padding-bottom: 0.5cm'>
+              <span style='white-space: pre-line'><b>1. {% trans 'Zarządzanie klientami' %}</b>
+                -{% trans 'dodawanie nowych klientów' %}
+                -{% trans 'edycja danych klientów' %}
+                -{% trans 'historia zleceń klientów' %}
+                -{% trans 'zadania do wykonania dla każdego klienta' %}
                 
-                <b>2. zarządzanie zleceniami:</b> 
-                -tworzenie nowych zleceń
-                -wycenę zleceń
-                -edycja nowych zleceń
-                -wydruk protokołów dla klientów
-                -historia dotychczasowych zleceń
+                <b>2. {% trans 'zarządzanie zleceniami' %}:</b> 
+                -{% trans 'tworzenie nowych zleceń' %}
+                -{% trans 'wycenę zleceń' %}
+                -{% trans 'edycja nowych zleceń' %}
+                -{% trans 'wydruk protokołów dla klientów' %}
+                -{% trans 'historia dotychczasowych zleceń' %}
                 
-                <b>3. Baza pojazdów:</b>
-                - historia napraw pojazdu
+                <b>3. {% trans 'Baza pojazdów' %}:</b>
+                - {% trans 'historia napraw pojazdu' %}
                 
-                <b>4. Rachunkowość:</b>
-                -tworzenie wyceny, kosztorysu dla danego klienta,
-                -zestawienie kosztów  
+                <b>4. {% trans 'Rachunkowość' %}:</b>
+                -{% trans 'tworzenie wyceny, kosztorysu dla danego klienta' %},
+                -{% trans 'zestawienie kosztów' %}  
             </div>
           </div>
         </div>
-        <hr class='pt-2 mb-0'>
         <!-- <div class="row featurette">
           <div class="col-md-7">
             <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
@@ -116,7 +146,8 @@
           </div>
         </div>
         <hr class="featurette-divider"> -->
-      </section>
+      </div>
+    </section>
   </body>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-{% endblock %}
+
+  {% endblock %}

@@ -1,4 +1,5 @@
 from sys import prefix
+from tkinter import Widget
 from django import forms
 from django.forms.models import inlineformset_factory, modelformset_factory
 from .models import Car, CarMake, CarPart, Service, Client, CarModel
@@ -85,3 +86,8 @@ CarPartFormSet = modelformset_factory(CarPart, form=CarPartForm, fields=['car_pa
 
 class SearchForm(forms.Form):
     query = forms.CharField()
+
+
+class ContactForm(forms.Form):
+    client_email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'text-input'}))
+    contact_message = forms.CharField(required=True, min_length=30, widget=forms.Textarea(attrs={'class': 'textarea-input'}))

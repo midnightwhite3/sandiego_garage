@@ -4,7 +4,7 @@
 
 body {
     color: #5a5a5a;
-    min-height: auto;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     padding-bottom: 0cm;
@@ -22,6 +22,7 @@ footer {
     width: 100%;
     margin-top: auto;
     z-index: 600;
+    /* min-height: 100vh; */
   }
 
   /* CUSTOMIZE THE CAROUSEL

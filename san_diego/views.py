@@ -1,23 +1,26 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView
-from .forms import ClientForm, CarForm, SearchForm, CarPartFormSet, ServiceFormSet
+from .forms import ClientForm, CarForm, ContactForm, SearchForm, CarPartFormSet, ServiceFormSet
 from .models import Car, CarModel, CarPart, Client, Service
 from account.models import Profile
-from django.views.generic import ListView, CreateView, UpdateView, TemplateView
+from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.contrib.postgres.search import SearchVector
 from django.db.models import Sum
-from io import BytesIO, StringIO
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 import os
 from django.conf import settings
+from django.core.mail import send_mail
+from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
+
 
 def fetch_resources(uri, rel):
     path = os.join(settings.STATIC_ROOT, uri.replace(settings.STATIC_URL, "bootstrap.css"))
@@ -29,10 +32,44 @@ def load_car_models(request):
     models = CarModel.objects.filter(make_id=car_make_id).order_by('model_name')
     return render(request, 'san_diego/car_models_dropdown.html', {'models': models})
 
+
 def home_view(request, *args, **kwargs):
     template = 'san_diego/home.html'
-    context = {}
-    return render(request, template, context)
+    if request.method == 'POST':
+        try:
+        # try:
+        #     message = request.POST['contact_message']
+        #     client_mail = request.POST['client_mail']
+        #     send_mail(subject='Wycena dla: ' + client_mail,
+        #         message=message,
+        #         from_email=client_mail,
+        #         recipient_list=[settings.EMAIL_HOST_USER],
+        #         fail_silently=False)
+        #     return HttpResponseRedirect('/')
+        # except:
+        #     context = {'error': error}
+        #     return render(request, template, context)
+            form = ContactForm(request.POST)
+            if form.is_valid():
+                client_email = form.cleaned_data['client_email']
+                message = form.cleaned_data['contact_message']
+                send_mail(subject='Wycena dla: ' + client_email,
+                    message=message,
+                    from_email=client_email,
+                    recipient_list=[settings.EMAIL_HOST_USER],
+                    fail_silently=False)
+                messages.success(request, _('Your mail has been sent successfully. I will reply as soon as I can.'))
+                return HttpResponseRedirect('/')
+            else:
+                messages.error(request, _('Something went wrong. We will try to fix it as fast as we can. You can call me instead: 669 393 761.'))
+                messages.error(request, form.errors)
+        except:
+            messages.error(request, _('Server side problem occured, please write to us: sandiegogarage@gmail.com or call us: 669 393 761.'))
+            messages.error(request, form.errors)
+    else:
+        form = ContactForm()
+    return render(request, template, {'form':  form})
+
 
 def car_search(request):
     form = SearchForm()
@@ -495,43 +532,6 @@ def services_parts_delete(request, **kwargs):
         carparts.delete()
         return redirect('service_history', uuid=car.uuid)
     return render(request, 'san_diego/service_delete.html', context)
-
-
-# @method_decorator(login_required, name='dispatch')
-# class InvoiceView(TemplateView):
-#     template_name = 'san_diego/invoice.html'
-
-#     def get_object(self):
-#         car = get_object_or_404(Car, uuid=self.kwargs.get('uuid'), user=self.request.user)
-#         return car
-    
-#     def get_context_data(self, *args, **kwargs):
-#         context = super(InvoiceView, self).get_context_data(**kwargs)
-#         profile = get_object_or_404(Profile, user=self.request.user)
-#         services = Service.objects.filter(car=self.get_object(), user=self.request.user, date_added=kwargs.get('date'))
-#         carparts = CarPart.objects.filter(car=self.get_object(), user=self.request.user, pdate_added=kwargs.get('date'))
-#         services_total_price_perday = services.filter().values('date_added').order_by(
-#             '-date_added').annotate(sum=Sum('service_price'))
-#         parts_total_price_perday = carparts.filter().values('pdate_added').annotate(sum=Sum('part_price'))
-#         total = []
-#         for item in services_total_price_perday:
-#             for i in parts_total_price_perday:
-#                 if item['date_added'] == i['pdate_added']:
-#                     tp = item['sum'] + i['sum']
-#                     td = {
-#                         'total': tp,
-#                         'date': item['date_added']
-#                     }
-#                     total.append(td)
-
-#         context['services'] = services
-#         context['carparts'] = carparts
-#         context['profile'] = profile
-#         context['car'] = self.get_object()
-#         context['stpp'] = services_total_price_perday
-#         context['ptpp'] = parts_total_price_perday
-#         context['total'] = total
-#         return context
 
 
 def generate_invoice_pdf(request, uuid, *args, **kwargs):

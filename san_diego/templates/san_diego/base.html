@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css" rel="stylesheet"/> 
+
     <link href="{% static 'font.css' %}" rel="stylesheet">
     <title>{% block title %}San Diego{% endblock %}</title>
 
@@ -24,25 +24,28 @@
 
     <!-----  Top navbar  ----->
 		<header style="min-height: auto">
-      <nav id ='navbar' class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: rgb(0, 0, 0); z-index: 99;">
+      <nav id ='navbar' class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: rgba(26,29,34,255); z-index: 99;">
         <!-- <a href="#menu-toggle" type='button' class="btn btn-default" id="menu-toggle"><span class="dark-blue-text"><i
           class="fas fa-bars fa-1x"></i></span></a> -->
         <div class='container'>
           <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static 'images/sandiego.png' %}" alt="" width="30" height="30" class="d-inline-block align-text-top ml-2">
+            <img src="{% static 'images/sandiego.png' %}" alt="" width="30" height="30">
             San Diego
           </a>
-          <!-- <div class="collapse navbar-collapse" id="navbarCollapse"> -->
-            <!-- <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-            </ul> -->
+          <div class="collapse navbar-collapse" id="navbarCollapse">
             {% if not request.user.is_authenticated %}
-              <a class="btn" style="color: yellow" href="{% url 'login' %}" role="button">{% trans 'Log in' %}</a>
+              <ul class="navbar-nav mr-auto ml-4">
+                <li class="nav-item">
+                  <a class="nav-link" style="color: red;" href="#quotation">{% trans "Wycena" %}</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link ml-2" style="color: red;" href="#app">{% trans "Aplikacja" %}</a>
+                </li>
+              </ul>
+              <a class="btn" style="color: red" href="{% url 'login' %}" role="button">{% trans 'Log in' %}</a>
             {% else %}
               <div class='ml-auto'>{% trans "You're logged in as" %} {{user}}.</div>
-              <a class="btn" style="color: yellow" href="{% url 'logout' %}" role="button">{% trans 'Log out' %}</a>
+              <a class="btn" style="color: red" href="{% url 'logout' %}" role="button">{% trans 'Log out' %}</a>
             {% endif %}
             </ul>
           </div>
@@ -98,7 +101,9 @@
 
     <!-----  Footer  ----->
     {% if not user.is_authenticated %}
-    <footer id="footer" class="text-black text-center" style="background-color: rgb(246, 190, 0);">
+    <footer id="footer" class="text-white text-center" style="background-color: rgba(26,29,34,255);">
+      <div class='container-fluid px-0 mx-0' style="background-color: rgba(23,24,28,255); height: 5vh">
+      </div>
       <!-- Grid container -->
       <div class="container p-4">
         <!--Grid row-->
@@ -114,13 +119,13 @@
           <div class="col-lg-4 col-md-6 pt-2 mb-md-0">
             <ul class="fa-ul" style="margin-left: 1.65em;">
               <li class="mb-3">
-                <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">Cmolas 431b, 36-105 Cmolas</span>
+                <span class="fa-li"><i class="fas fa-home" style="color: red;"></i></span><span class="ms-2">Cmolas 431b, 36-105 Cmolas</span>
               </li>
               <li class="mb-3">
-                <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">sssandy1988@o2.pl</span>
+                <span class="fa-li"><i class="fas fa-envelope" style="color: red;"></i></span><span class="ms-2">sssandy1988@o2.pl</span>
               </li>
               <li class="mb-3">
-                <span class="fa-li"><i class="fas fa-phone"></i></span><span class="ms-2">+48 669 393 761</span>
+                <span class="fa-li"><i class="fas fa-phone" style="color: red;"></i></span><span class="ms-2">+48 669 393 761</span>
               </li>
             </ul>
           </div>
@@ -130,7 +135,7 @@
           <div class="col-lg-4 col-md-6 pt-2 mb-md-0">
             <h5 class="text-uppercase mb-4">{% trans 'Opening hours' %}</h5>
 
-            <table class="table text-center text-black">
+            <table class="table text-center">
               <tbody class="font-weight-normal">
                 <tr>
                   <td>{% trans 'Pon' %} - {% trans 'Pt' %}:</td>
@@ -154,6 +159,7 @@
     <!-----   Footer end   ----->
 
     <!-- Bootstrap core JavaScript-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

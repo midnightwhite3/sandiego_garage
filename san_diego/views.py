@@ -36,7 +36,6 @@ def load_car_models(request):
 def home_view(request, *args, **kwargs):
     template = 'san_diego/home.html'
     if request.method == 'POST':
-        try:
         # try:
         #     message = request.POST['contact_message']
         #     client_mail = request.POST['client_mail']
@@ -63,9 +62,6 @@ def home_view(request, *args, **kwargs):
             else:
                 messages.error(request, _('Something went wrong. We will try to fix it as fast as we can. You can call me instead: 669 393 761.'))
                 messages.error(request, form.errors)
-        except:
-            messages.error(request, _('Server side problem occured, please write to us: sandiegogarage@gmail.com or call us: 669 393 761.'))
-            messages.error(request, form.errors)
     else:
         form = ContactForm()
     return render(request, template, {'form':  form})

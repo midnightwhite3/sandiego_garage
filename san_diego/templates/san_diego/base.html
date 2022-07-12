@@ -36,10 +36,10 @@
             {% if not request.user.is_authenticated %}
               <ul class="navbar-nav mr-auto ml-4">
                 <li class="nav-item">
-                  <a class="nav-link" style="color: red;" href="#quotation">{% trans "Wycena" %}</a>
+                  <a class="nav-link" style="color: white" href="#quotation">{% trans "Wycena" %}</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link ml-2" style="color: red;" href="#app">{% trans "Aplikacja" %}</a>
+                  <a class="nav-link ml-2" href="#app">{% trans "Aplikacja" %}</a>
                 </li>
               </ul>
               <a class="btn" style="color: red" href="{% url 'login' %}" role="button">{% trans 'Log in' %}</a>
@@ -74,7 +74,7 @@
     </div>-->
 
     <!--- LANGUAGE BUTTON --->
-    <div class="fixed-bottom d-flex justify-content-end p-3">
+    <div class="fixed-bottom d-flex justify-content-end m-3">
       {% get_current_language as LANGUAGE_CODE %}
       {% get_available_languages as LANGUAGES %}
       {% get_language_info_list for LANGUAGES as languages %}

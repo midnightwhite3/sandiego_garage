@@ -45,7 +45,7 @@
     font-size: 18px;
     line-height: 26px;
     font-weight: 400;
-    color:red;
+    color:black;
     cursor: text;
     text-transform: capitalize;
     transition: transform 0.2s ease-in-out;
@@ -53,7 +53,7 @@
 
 .contact-form .submit-btn{
     display: inline-block;
-    background-color: red;
+    background-color: black;
     color: white;
     text-transform: uppercase;
     letter-spacing: 2px;

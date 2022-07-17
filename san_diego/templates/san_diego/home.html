@@ -25,34 +25,34 @@
         <div class="row pt-4">
           <div class="col-lg-4">
             <img class="rounded-circle" src="{% static 'images/air-conditioning.jpg' %}" alt="Generic placeholder image" width="180" height="180">
-            <h3>{% trans 'Naprawa' %}</h3>
-            <p class='text-muted' style='white-space: pre-line'><i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Przeglądy okresowo-eksploatacyjne' %}</h6>
-            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Układ hamulcowy' %}
-            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Układ napędowy' %}
-            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Układ wydechowy' %}
-            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Układ kierowniczy' %}
-            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Układ elektryczny' %}
-            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Zawieszenie' %}</p>
+            <h3>{% trans 'Repair' %}</h3>
+            <p class='text-muted' style='white-space: pre-line'><i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Regular performance maintenance' %}</h6>
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Braking system' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Drive system' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Exhaust system' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Steering' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Electrical system' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Suspension' %}</p>
           </div>
           <div class="col-lg-4">
             <img class="rounded-circle" src="{% static 'images/car-diagnose.jpg' %}" alt="Generic placeholder image" width="180" height="180">
-            <h2>{% trans 'Diagnostyka' %}</h2>
-            <p class='text-muted'>{% trans 'Diagnostyka komputerowa to jedna z podstawowych metody weryfikacji' %}
-              {% trans 'potencjalnych awarii usterek w pojeździe.' %}
-              {% trans 'Umożliwa szybkie wykrycie nieprawidłowości' %}
-              {% trans 'związanych z wieloma układami i podzespołami.' %}
+            <h2>{% trans 'Diagnostics' %}</h2>
+            <p class='text-muted'>{% trans 'Computer diagnostics is one of the basic methods of verification of' %}
+              {% trans 'potential malfunctions in a car.' %}
+              {% trans 'It allows to quickly detect any abnormalities' %}
+              {% trans 'related to many systems.' %}
             </p>
           </div>
           <div class="col-lg-4">
             <img class="rounded-circle" src="{% static 'images/car-repair.jpg' %}" alt="Generic placeholder image" width="180" height="180">
-            <h3>{% trans 'Klimatyzacja' %}</h3>
-            <p class='text-muted' style='white-space: pre-line'><i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Sprawdzanie szczelności' %}
-            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Naprawa układu' %}
-            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Nabijanie klimatyzacji' %}
-            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Odgrzybianie' %}
-            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Ozonowanie' %}
-            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Wymiana filtra kabinowego' %}
-            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Kompleksowe sprawdzanie podzespołów funkcjonalnych' %}</p>
+            <h3>{% trans 'AC' %}</h3>
+            <p class='text-muted' style='white-space: pre-line'><i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Leakage testing' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'System repairing' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'AC charging' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Fumigation' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Ozonation' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Cabin filter replacement' %}
+            <i class="fas fa-wrench pr-2" style='color: red'></i>{% trans 'Comprehensive module testing' %}</p>
           </div>
         </div>
       </div>
@@ -67,14 +67,15 @@
         <div class='container marketing'>
           <div class="row featurette">
             <div class="col-md-7">
-              <h2 class="featurette-heading pt-4 mt-0">{% trans 'Wyceń naprawę' %}<p><span>{% trans 'Twojego auta' %}</span></p></h2>
-              <p class="lead">{% trans 'Nie trać czasu i energii jeżdżąc do kilku warsztatów po wyceny' %}! {% trans 'Dzięki temu formularzowi przygotuję dla Ciebie wycenę naprawy Twojego pojazdu, a wszystko to bez wychodzenia z domu' %}. 
-                {% trans 'Oszacuję dla Ciebie, ile będzie kosztować naprawa' %}.
-                {% trans 'Ile kosztuje ta wycena? Nic, bo jest całkowicie darmowa i niezobowiązująca' %}!</p>
-              <p class=""><b>{% trans 'Krok 1: Wypełnij formularz' %}</b> – {% trans 'Opowiedz mi o swoim pojeździe (marka, model, rok, itp.) i napisz jakiego rodzaju naprawy potrzebujesz' %}. 
-                {% trans 'Im bardziej drobiazgowo to zrobisz, tym łatwiej będzie mi dokonać prawidłowej wyceny naprawy' %}.</p>
-              <p class=''><b>{% trans 'Krok 2: Kliknij “Wyślij”' %}</b> – {% trans 'W ten sposób twoja wiadomość zostanie dostarczona' %}. 
-                {% trans 'Odpowiem możliwie szybko, ile będzie kosztować naprawa' %}.</p>
+              <h2 class="featurette-heading pt-4 mt-0">{% trans 'Appraise repair' %}<p><span>{% trans 'Of your car' %}</span></p></h2>
+              <p class="lead">{% trans "Don't waste time and energy, going from one garage to another for appraise" %}! 
+                {% trans 'Thanks to this form, I will prepare an appraise of your car and all this without leaving your house' %}. 
+                {% trans "I'll asses how much the repair will cost" %}.
+                {% trans "How much does the valuation costs? Nothing, it's fully free and non-binding" %}!</p>
+              <p class=""><b>{% trans 'Step 1: Fill up the form' %}</b> – {% trans 'Tell me about your car (make, model, year, etc.) and write what type of repair you need' %}. 
+                {% trans 'The more detailed, the easier it will be to make precise valuation' %}.</p>
+              <p class=''><b>{% trans 'Step 2: Click “Send“' %}</b> – {% trans 'Like this, your message will be delivered' %}. 
+                {% trans 'I will reply as soon as possible, how much the repair will cost' %}.</p>
             </div>
             <div class="col-md-5">
               {% block style_for_contact %}<link href="{% static 'contact_formm.css' %}" rel="stylesheet">{% endblock style_for_contact %}
@@ -100,12 +101,13 @@
         </div>
       </div>
       <div id='app' class='container marketing'>
+        <hr>
         <div class="row featurette">
           <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">{% trans 'Jesteś mechanikiem?' %} <span class="text-muted">{% trans 'Sprawdź aplikację.' %}</span></h2>
-            <p class="lead">{% trans 'Lubisz mieć wszystko pod ręką' %}? {% trans 'Świetnie! Bo mam dla Ciebie aplikacje, która ułatwi Ci pracę na co dzień i pomoże zapamiętać wszystkie samochody' %}, 
-              {% trans 'które naprawiłeś, a także stworzyć bazę danych swoich klientów' %}. 
-              {% trans 'A to wszystko bezpłatnie' %}!</p>
+            <h2 class="featurette-heading">{% trans 'Are you a mechanic?' %} <span class="text-muted">{% trans 'Check out the app.' %}</span></h2>
+            <p class="lead">{% trans 'Do you like to have everything at hand' %}? {% trans 'Good! Because i have an app for you, which will make your everyday work easier and help you remember all cars' %}, 
+              {% trans 'that you have fixed and make a database of all your clients' %}. 
+              {% trans 'And all that is completly free' %}!</p>
               <div class='contact-form'>
                 <div class='form-field'>
                   <a class='submit-btn' href="{% url 'register' %}" role='button'>{% trans 'Register'%}</a>
@@ -114,28 +116,35 @@
           </div>
           <div class="col-md-5 order-md-1">
             <div style='padding-top: 0.5cm; padding-bottom: 0.5cm'>
-              <span style='white-space: pre-line'><b>1. {% trans 'Zarządzanie klientami' %}</b>
-                -{% trans 'dodawanie nowych klientów' %}
-                -{% trans 'edycja danych klientów' %}
-                -{% trans 'historia zleceń klientów' %}
-                -{% trans 'zadania do wykonania dla każdego klienta' %}
+              <span style='white-space: pre-line'><b>1. {% trans 'Client management' %}</b>
+                -{% trans 'adding new clients' %}
+                -{% trans 'client data edition' %}
+                -{% trans 'client orders history' %}
+                -{% trans 'tasks to complete for every client' %}
                 
-                <b>2. {% trans 'zarządzanie zleceniami' %}:</b> 
-                -{% trans 'tworzenie nowych zleceń' %}
-                -{% trans 'wycenę zleceń' %}
-                -{% trans 'edycja nowych zleceń' %}
-                -{% trans 'wydruk protokołów dla klientów' %}
-                -{% trans 'historia dotychczasowych zleceń' %}
+                <b>2. {% trans 'Order management' %}:</b> 
+                -{% trans 'creating new orders' %}
+                -{% trans 'order valuation' %}
+                -{% trans 'orders edition' %}
+                -{% trans 'invoice printing' %}
+                -{% trans 'current orders history' %}
                 
-                <b>3. {% trans 'Baza pojazdów' %}:</b>
-                - {% trans 'historia napraw pojazdu' %}
+                <b>3. {% trans 'Cars database' %}:</b>
+                - {% trans 'car repairment history' %}
                 
-                <b>4. {% trans 'Rachunkowość' %}:</b>
-                -{% trans 'tworzenie wyceny, kosztorysu dla danego klienta' %},
-                -{% trans 'zestawienie kosztów' %}  
+                <b>4. {% trans 'Accounting' %}:</b>
+                -{% trans 'creating estimations for client' %},
+                -{% trans 'cost breakdown' %}  
             </div>
           </div>
         </div>
+        <hr>
+      </div>
+      <div class='container-fluid' style='background-color: #EDEDED'>
+        <div id='map' class='container pb-4 pt-4'>
+          {{map|safe}}
+        </div>
+      </div>
         <!-- <div class="row featurette">
           <div class="col-md-7">
             <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
@@ -146,7 +155,6 @@
           </div>
         </div>
         <hr class="featurette-divider"> -->
-      </div>
     </section>
   </body>
 

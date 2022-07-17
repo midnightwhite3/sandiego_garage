@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-26 10:42+0100\n"
+"POT-Creation-Date: 2022-07-17 22:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -142,7 +142,7 @@ msgid ""
 msgstr ""
 
 #: .\account\templates\registration\login.html:6
-#: .\san_diego\templates\san_diego\base.html:42
+#: .\san_diego\templates\san_diego\base.html:52
 msgid "Log in"
 msgstr ""
 
@@ -160,6 +160,7 @@ msgid "Log In"
 msgstr ""
 
 #: .\account\templates\registration\login.html:66
+#: .\san_diego\templates\san_diego\home.html:115
 msgid "Register"
 msgstr ""
 
@@ -184,7 +185,7 @@ msgstr ""
 #: .\san_diego\templates\san_diego\car_edit.html:44
 #: .\san_diego\templates\san_diego\client_add.html:14
 #: .\san_diego\templates\san_diego\client_edit.html:14
-#: .\san_diego\templates\san_diego\service_add.html:108
+#: .\san_diego\templates\san_diego\service_add.html:107
 msgid "Save"
 msgstr ""
 
@@ -242,6 +243,7 @@ msgid "To reset your password, enter an e-mail you used for signing up"
 msgstr ""
 
 #: .\account\templates\registration\password_reset_form.html:14
+#: .\san_diego\templates\san_diego\home.html:97
 msgid "Send"
 msgstr ""
 
@@ -385,20 +387,44 @@ msgstr ""
 msgid "Service"
 msgstr ""
 
-#: .\san_diego\templates\san_diego\base.html:44
+#: .\san_diego\templates\san_diego\base.html:43
+msgid "Wycena"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\base.html:46
+msgid "Aplikacja"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\base.html:49
+msgid "Lokalizacja"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\base.html:54
 msgid "You're logged in as"
 msgstr ""
 
-#: .\san_diego\templates\san_diego\base.html:45
+#: .\san_diego\templates\san_diego\base.html:55
 msgid "Log out"
 msgstr ""
 
-#: .\san_diego\templates\san_diego\base.html:93
+#: .\san_diego\templates\san_diego\base.html:103
 msgid "Language"
 msgstr ""
 
-#: .\san_diego\templates\san_diego\base.html:132
+#: .\san_diego\templates\san_diego\base.html:144
 msgid "Opening hours"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\base.html:149
+msgid "Mon"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\base.html:149
+msgid "Fri"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\base.html:153
+msgid "Sat"
 msgstr ""
 
 #: .\san_diego\templates\san_diego\car_add.html:5
@@ -467,7 +493,7 @@ msgstr ""
 
 #: .\san_diego\templates\san_diego\car_library.html:39
 #: .\san_diego\templates\san_diego\service_add.html:5
-#: .\san_diego\templates\san_diego\service_add.html:111
+#: .\san_diego\templates\san_diego\service_add.html:110
 #: .\san_diego\templates\san_diego\service_history.html:17
 msgid "Add service"
 msgstr ""
@@ -521,6 +547,242 @@ msgstr ""
 msgid "Phone"
 msgstr ""
 
+#: .\san_diego\templates\san_diego\home.html:30
+msgid "Repair"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:31
+msgid "Regular performance maintenance"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:32
+msgid "Braking system"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:33
+msgid "Drive system"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:34
+msgid "Exhaust system"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:35
+msgid "Steering"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:36
+msgid "Electrical system"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:37
+msgid "Suspension"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:41
+msgid "Diagnostics"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:42
+msgid "Computer diagnostics is one of the basic methods of verification of"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:43
+msgid "potential malfunctions in a car."
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:44
+msgid "It allows to quickly detect any abnormalities"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:45
+msgid "related to many systems."
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:50
+msgid "AC"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:51
+msgid "Leakage testing"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:52
+msgid "System repairing"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:53
+msgid "AC charging"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:54
+msgid "Fumigation"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:55
+msgid "Ozonation"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:56
+msgid "Cabin filter replacement"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:57
+msgid "Comprehensive module testing"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:72
+msgid "Appraise repair"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:72
+msgid "Of your car"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:73
+msgid ""
+"Don't waste time and energy, going from one garage to another for appraise"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:74
+msgid ""
+"Thanks to this form, I will prepare an appraise of your car and all this "
+"without leaving your house"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:75
+msgid "I'll asses how much the repair will cost"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:76
+msgid ""
+"How much does the valuation costs? Nothing, it's fully free and non-binding"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:77
+msgid "Step 1: Fill up thje form"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:77
+msgid ""
+"Tell me about your car (make, model, year, etc.) and write what type of "
+"repair you need"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:78
+msgid "The more detailed, the easier it will be to make precise valuation"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:79
+msgid "Step 2: Click “Send“"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:79
+msgid "Like this, your message will be delivered"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:80
+msgid "I will reply as soon as possible, how much the repair will cost"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:89
+msgid "Email address"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:93
+msgid "Message"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:109
+msgid "Are you a mechanic?"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:109
+msgid "Check out the app."
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:110
+msgid "Do you like to have everything at hand"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:110
+msgid ""
+"Good! Because i have an app for you, which will make your everyday work "
+"easier and help you remember all cars"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:111
+msgid "that you have fixed and make a database of all your clients"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:112
+msgid "And all that is completly free"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:121
+msgid "Client management"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:122
+msgid "adding new clients"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:123
+msgid "client data edition"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:124
+msgid "client orders history"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:125
+msgid "tasks to complete for every client"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:127
+msgid "order management"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:128
+msgid "creting new orders"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:129
+msgid "order valuation"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:130
+msgid "orders edition"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:131
+msgid "invoice printing"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:132
+msgid "current orders history"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:134
+msgid "Cars database"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:135
+msgid "car repairment history"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:137
+msgid "Accounting"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:138
+msgid "creating estimations for client"
+msgstr ""
+
+#: .\san_diego\templates\san_diego\home.html:139
+msgid "cost breakdown"
+msgstr ""
+
 #: .\san_diego\templates\san_diego\pagination.html:8
 #: .\san_diego\templates\san_diego\pagination.html:15
 msgid "Previous"
@@ -537,7 +799,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: .\san_diego\templates\san_diego\service_add.html:112
+#: .\san_diego\templates\san_diego\service_add.html:111
 msgid "Add part"
 msgstr ""
 
@@ -582,15 +844,15 @@ msgstr ""
 msgid "Total price"
 msgstr ""
 
-#: .\san_diego\templates\san_diego\service_history.html:126
+#: .\san_diego\templates\san_diego\service_history.html:130
 msgid "To take full adventage of print function, please head to your"
 msgstr ""
 
-#: .\san_diego\templates\san_diego\service_history.html:126
+#: .\san_diego\templates\san_diego\service_history.html:130
 msgid "profile"
 msgstr ""
 
-#: .\san_diego\templates\san_diego\service_history.html:127
+#: .\san_diego\templates\san_diego\service_history.html:131
 msgid "and fill up informations about your company"
 msgstr ""
 
@@ -612,6 +874,16 @@ msgstr ""
 #: .\san_diego\templates\san_diego\sidebar.html:78
 #: .\san_diego\templates\san_diego\sidebar.html:80
 msgid "Profile"
+msgstr ""
+
+#: .\san_diego\views.py:66
+msgid "Your mail has been sent successfully. I will reply as soon as I can."
+msgstr ""
+
+#: .\san_diego\views.py:69
+msgid ""
+"Something went wrong. We will try to fix it as fast as we can. You can call "
+"me instead: 669 393 761."
 msgstr ""
 
 #: .\garage\settings.py:130

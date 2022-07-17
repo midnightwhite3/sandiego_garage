@@ -20,7 +20,7 @@
     <!-- Custom styles for this template -->
     {% block custom_css %}<link href="{% static 'mainn.css' %}" rel="stylesheet">{% endblock custom_css %}
   </head>
-  <body>
+  <body {% if user.is_authenticated %} style="margin-left: 2cm" {% endif %}>
 
     <!-----  Top navbar  ----->
 		<header style="min-height: auto">
@@ -30,7 +30,11 @@
         <div class='container'>
           <a class="navbar-brand" href="{% url 'home' %}">
             <img src="{% static 'images/sandiego.png' %}" alt="" width="30" height="30">
-            San Diego
+            {% block font %}
+            <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Megrim">
+            <div style="font-family: Megrim, serif; font-size: 25px">San Diego</div>
+            {% endblock font %}
           </a>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             {% if not request.user.is_authenticated %}
@@ -39,7 +43,10 @@
                   <a class="nav-link" style="color: white" href="#quotation">{% trans "Wycena" %}</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link ml-2" href="#app">{% trans "Aplikacja" %}</a>
+                  <a class="nav-link ml-2" href="#app" style="color: white;">{% trans "Aplikacja" %}</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link ml-2" href="#map" style="color: white;">{% trans "Lokalizacja" %}</a>
                 </li>
               </ul>
               <a class="btn" style="color: red" href="{% url 'login' %}" role="button">{% trans 'Log in' %}</a>
@@ -138,11 +145,11 @@
             <table class="table text-center">
               <tbody class="font-weight-normal">
                 <tr>
-                  <td>{% trans 'Pon' %} - {% trans 'Pt' %}:</td>
+                  <td>{% trans 'Mon' %} - {% trans 'Fri' %}:</td>
                   <td>9:00 - 17:00</td>
                 </tr>
                 <tr>
-                  <td>{% trans 'Sob' %}</td>
+                  <td>{% trans 'Sat' %}</td>
                   <td>9:00 - 14:00</td>
                 </tr>
               </tbody>

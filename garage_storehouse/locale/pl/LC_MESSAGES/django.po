@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-26 10:42+0100\n"
+"POT-Creation-Date: 2022-07-17 22:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
 #: .\garage_storehouse\models.py:10
 #: .\garage_storehouse\templates\garage_storehouse\storehouse.html:14
 msgid "Name"
@@ -53,7 +54,7 @@ msgstr "Zapisz"
 
 #: .\garage_storehouse\templates\garage_storehouse\add_part.html:17
 msgid "Save and add another"
-msgstr ""
+msgstr "Zapisz i dodaj kolejną"
 
 #: .\garage_storehouse\templates\garage_storehouse\delete_part.html:4
 #: .\garage_storehouse\templates\garage_storehouse\delete_part.html:10

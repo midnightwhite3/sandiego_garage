@@ -20,6 +20,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
+import folium
 
 
 def fetch_resources(uri, rel):
@@ -35,6 +36,11 @@ def load_car_models(request):
 
 def home_view(request, *args, **kwargs):
     template = 'san_diego/home.html'
+    m = folium.Map(widht=500, height=400, location=[50.26908336019376, 21.728378842794267], zoom_start=12)
+    folium.Marker([50.26908336019376, 21.728378842794267], icon=folium.Icon(color='black'),
+    tooltip='Garaż San Diego, Cmolas 431b').add_to(m)
+    m = m._repr_html_()
+    m = m[:90] + '30.5' + m[92:] # padding bottom for map css
     if request.method == 'POST':
         # try:
         #     message = request.POST['contact_message']
@@ -64,7 +70,7 @@ def home_view(request, *args, **kwargs):
                 messages.error(request, form.errors)
     else:
         form = ContactForm()
-    return render(request, template, {'form':  form})
+    return render(request, template, {'form':  form, 'map': m,})
 
 
 def car_search(request):

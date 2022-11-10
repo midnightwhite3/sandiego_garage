@@ -11,3 +11,5 @@ Major feature i want to implement is to send SMS to clients when their oil chang
 Dont judge the frontend side, im not an artistic mind and I just don't like frontend stuff, CSS and HTML are interesting but i love the magic of backend.
 
 The description in two langs is avaiable on the site, you can read it, log in and check fro urself about the features.
+
+sandiegogarage.herokuapp.com
